@@ -21,14 +21,6 @@ for i=1:10
                 end
             e3=r2;    
             end
-%             r2=regexp(e2,' ','split');
-%             if size(r2)>1
-%             r3=char(r2(1));
-%                 for rrr=2:size(r2)
-%                 r3=[r3,char(r2(rrr))];
-%                 r2=r3;
-%             end
-%             end
             e(a)={e3};
             a=a+1;
         end
