@@ -1,0 +1,4 @@
+SPxxyy corresponde a los resultados de la temporada xx-yy
+
+Las temporadas 03-04 y 04-05 no tienen todos los datos (Tiros al arco, tiros, faltas y tarjetas)
+
