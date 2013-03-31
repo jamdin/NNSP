@@ -4,15 +4,15 @@ Mallorca
 Espanol
 Sevilla
 Getafe
-Ath Bilbao
+AthBilbao
 Betis
 Barcelona
 Sociedad
 Levante
-Ath Madrid
-Real Madrid
+AthMadrid
+RealMadrid
 Valencia
-La Coruna
+LaCoruna
 Osasuna
 Vallecano
 Granada

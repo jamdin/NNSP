@@ -1,20 +1,20 @@
 Hercules
-Ath Bilbao
+AthBilbao
 Levante
 Sevilla
 Malaga
 Valencia
 Espanol
 Getafe
-La Coruna
+LaCoruna
 Zaragoza
 Mallorca
-Real Madrid
+RealMadrid
 Osasuna
 Almeria
 Santander
 Barcelona
 Sociedad
 Villarreal
-Ath Madrid
-Sp Gijon
+AthMadrid
+SpGijon

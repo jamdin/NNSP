@@ -1,19 +1,19 @@
 Alaves
 Barcelona
-Ath Bilbao
+AthBilbao
 Sociedad
 Valencia
 Betis
-Ath Madrid
+AthMadrid
 Zaragoza
 Cadiz
-Real Madrid
+RealMadrid
 Celta
 Malaga
 Espanol
 Getafe
 Mallorca
-La Coruna
+LaCoruna
 Osasuna
 Villarreal
 Sevilla

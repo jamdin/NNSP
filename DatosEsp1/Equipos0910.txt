@@ -1,13 +1,13 @@
-Real Madrid
-La Coruna
+RealMadrid
+LaCoruna
 Zaragoza
 Tenerife
 Almeria
 Valladolid
-Ath Bilbao
+AthBilbao
 Espanol
 Malaga
-Ath Madrid
+AthMadrid
 Mallorca
 Xerez
 Osasuna
@@ -17,4 +17,4 @@ Getafe
 Valencia
 Sevilla
 Barcelona
-Sp Gijon
+SpGijon

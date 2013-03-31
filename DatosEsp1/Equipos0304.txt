@@ -1,12 +1,12 @@
 Albacete
 Osasuna
-Ath Bilbao
+AthBilbao
 Barcelona
 Espanol
 Sociedad
 Malaga
 Villarreal
-Real Madrid
+RealMadrid
 Betis
 Valencia
 Valladolid
@@ -15,6 +15,6 @@ Murcia
 Santander
 Mallorca
 Sevilla
-Ath Madrid
+AthMadrid
 Zaragoza
-La Coruna
+LaCoruna

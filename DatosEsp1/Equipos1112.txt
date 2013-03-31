@@ -1,12 +1,12 @@
 Granada
 Betis
-Sp Gijon
+SpGijon
 Sociedad
 Valencia
 Santander
-Ath Bilbao
+AthBilbao
 Vallecano
-Ath Madrid
+AthMadrid
 Osasuna
 Getafe
 Levante
@@ -15,6 +15,6 @@ Espanol
 Sevilla
 Malaga
 Zaragoza
-Real Madrid
+RealMadrid
 Barcelona
 Villarreal

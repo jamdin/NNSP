@@ -1,13 +1,13 @@
-Ath Madrid
+AthMadrid
 Malaga
 Espanol
-La Coruna
+LaCoruna
 Numancia
 Betis
 Mallorca
-Real Madrid
+RealMadrid
 Osasuna
-Ath Bilbao
+AthBilbao
 Santander
 Barcelona
 Sevilla

@@ -1,12 +1,12 @@
-Real Madrid
-Ath Madrid
+RealMadrid
+AthMadrid
 Sevilla
 Getafe
-Ath Bilbao
+AthBilbao
 Osasuna
 Espanol
 Valladolid
-La Coruna
+LaCoruna
 Almeria
 Mallorca
 Levante

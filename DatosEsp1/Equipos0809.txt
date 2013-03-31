@@ -2,19 +2,19 @@ Espanol
 Valladolid
 Valencia
 Mallorca
-Ath Bilbao
+AthBilbao
 Almeria
-Ath Madrid
+AthMadrid
 Malaga
 Betis
 Recreativo
-La Coruna
-Real Madrid
+LaCoruna
+RealMadrid
 Numancia
 Barcelona
 Osasuna
 Villarreal
 Santander
 Sevilla
-Sp Gijon
+SpGijon
 Getafe

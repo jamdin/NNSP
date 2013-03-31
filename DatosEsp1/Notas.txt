@@ -2,3 +2,9 @@ SPxxyy corresponde a los resultados de la temporada xx-yy
 
 Las temporadas 03-04 y 04-05 no tienen todos los datos (Tiros al arco, tiros, faltas y tarjetas)
 
+Siguientes pasos:
+-Hacer funcion que cree una base de datos para cada equipo con todos los partidos jugados en las 10 temporadas.
+
+-Crear una funcion para encontrar partidos, posiblemente algo como encontrarPartido(equipo,parametro,valorparametro),
+ donde equipo es el equipo que se quiere buscar, parametro puede ser ('local', 'visitante', 'equipo', etc) y valor parametro puede ser ('10', '5', 'barcelona', etc).
+ y regresa
