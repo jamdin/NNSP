@@ -1,11 +1,11 @@
-temp='0304%0405%0506%0607%0708%0809%0910%1011%1112%1213';
+temp='0506%0607%0708%0809%0910%1011%1112%1213';
 r=regexp(temp,'%','split');
 s=strcat('Equipos',r(1),'.txt');
     s=char(s);
     C=textread(s,'%s');
     e=C;
     tam=size(C,1);
-for i=2:9 %Todas las temporadas
+for i=2:size(r,2) %Todas las temporadas
     s=strcat('Equipos',r(i),'.txt');
     s=char(s);
     C=textread(s,'%s');

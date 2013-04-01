@@ -1,5 +1,5 @@
 function b=estaEnArreglo(str,C)
-%Devuelve 1 si se encuentra en el arreglo y 0 si no
+%Devuelve 1 si str se encuentra en el arreglo C y 0 si no
 
 
     b=0;

@@ -1,0 +1,10 @@
+function [ha,Rival]=HomeAway(equipo,juego)
+    %Home=0
+    %Away=1
+
+    ha=strcmp(equipo,juego(1,4));
+    
+    if ha==0 %Home
+        
+    
+end

@@ -1,0 +1,25 @@
+function C=infoTemporada(equipo,temporada)
+
+    %Rival H/A FTHG FTAG FTR HS AS HST AST HF AF HC AC HY AY HR AR 
+    C=zeros(1,17);
+    i=2;
+    
+    while i<size(temporada,1)%todas las jornadas
+        b=estaEnArreglo(equipo,temporada(i,:)');
+        
+        if b==0
+            i=i+1;
+        else
+            juego=temporada(i,:);
+            [ha,Rival]=HomeAway(equipo,juego);
+            par=obtenerParametros(juego);
+        end
+        
+        
+        
+    end
+
+
+
+
+end

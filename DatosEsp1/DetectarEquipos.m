@@ -11,16 +11,17 @@ for i=1:10
     for j=1:10
         for k=3:4
             e2=t(j+1,k);
-            esp=find(char(e2)==' ');
-            e3=char(e2);
-            if size(esp,2)>0
-
-                for l=1:size(esp,2)
-                    
-                r2=[e3(1:esp(l)-1),e3(esp(l)+1:end)];
-                end
-            e3=r2;    
-            end
+%             esp=find(char(e2)==' ');      Sustituido por eliminarEspacios
+%             e3=char(e2);
+%             if size(esp,2)>0
+% 
+%                 for l=1:size(esp,2)
+%                     
+%                 r2=[e3(1:esp(l)-1),e3(esp(l)+1:end)];
+%                 end
+%             e3=r2;    
+%             end
+            e3=eliminarEspacios(e2);
             e(a)={e3};
             a=a+1;
         end
