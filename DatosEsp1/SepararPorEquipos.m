@@ -11,7 +11,7 @@ end
 
 
 Equipos=textread('AllTeams.txt','%s');
-datos=cell(380,17,size(Equipos,1));
+datos=cell(380,18,size(Equipos,1));
 for i=1:size(Equipos,1) %for de todos los equipos
     
     equipo=Equipos(i)
@@ -31,7 +31,7 @@ for i=1:size(Equipos,1) %for de todos los equipos
             s=char(s);
             [n,tmp,x]=xlsread(s);%se usa x
         %buscar partidos de la temporada    
-            Ceq=infoTemporada(equipo,x);
+            Ceq=infoTemporada(equipo,x,r(j));
             %Guardar partidos en el archivo
             datos(aux:(aux+size(Ceq,1)-1),:,i)=Ceq;
             aux=aux+size(Ceq,1);
@@ -43,4 +43,4 @@ for i=1:size(Equipos,1) %for de todos los equipos
     aux
 end
 
-save datosPrimeraDiv0304_1213J29;
+save ('datosPrimeraDiv0506_1213J29.mat','datos','temporadas');
