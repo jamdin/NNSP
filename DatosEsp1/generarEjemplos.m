@@ -21,8 +21,12 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
         for jornada=1:totalPartidos
       
         part=strcat(tempo,num2str(jornada));
-        E=generarDatos(datos,datosequipo,part);
+        [E,ag]=generarDatos(datos,datosequipo,part);
+        
+        if ag==1
         Ej=[Ej;E];
+        end
+        
         end
     end
     

@@ -1,4 +1,4 @@
-function E=generarDatos(datoscomp,datosequipo, jornada)
+function [E,ag]=generarDatos(datoscomp,datosequipo, jornada)
 
 ventana=10;
 teams=textread('AllTeams.txt','%s');
@@ -11,6 +11,10 @@ datosrival=datoscomp(:,:,riv);
 %Definir Local y Visitante
 ha=datosequipo{r,3};
 ftr=datosequipo{r,6};
+
+z=zeros(1,12);
+ag=1;
+
 if ha==1 %Local
     datoshome=datosequipo;
     datosaway=datosrival;
@@ -45,19 +49,39 @@ end
 
 [dgeneral]=encontrarPartido(datosequipo, 'general', ventana, jornada);
 
+if dgeneral==z
+    ag=0;
+end
+
 [dgeneralrival]=encontrarPartido(datosrival, 'general', ventana, jornada);
+
+if dgeneralrival==z
+    ag=0;
+end
 
 [dlocallocal]=encontrarPartido(datoshome,'local',5,jornada);%ultimos 5 partidos local
 
+if dlocallocal==z
+    ag=0;
+end
+
 [dvisvis]=encontrarPartido(datosaway,'visitante',5,jornada);%ultimos 5 partidos visitante
+
+if dvisvis==z
+    ag=0;
+end
 
 [ddir]=encontrarPartido(datosequipo,'equipo',ventana,jornada,rival);%enfrentamiento directo
 
-[ddirL]=encontrarPartido(datoshome,'equipolocal',5,jornada,nomAway);
+if ddir==z
+    ag=0;
+end
 
-[ddirV]=encontrarPartido(datosaway,'equipovisitante',5,jornada,nomLocal);
+%[ddirL]=encontrarPartido(datoshome,'equipolocal',5,jornada,nomAway);
 
-E=[dgeneral,dgeneralrival,dlocallocal,dvisvis,ddir, ddirL, ddirV, resultado];
+%[ddirV]=encontrarPartido(datosaway,'equipovisitante',5,jornada,nomLocal);
+
+E=[dgeneral,dgeneralrival,dlocallocal,dvisvis,ddir, resultado];
 
 
 end
