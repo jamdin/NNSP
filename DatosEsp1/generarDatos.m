@@ -30,20 +30,22 @@ end
 
 %resultado Gano(1), Empato(2), Perdio(3)
 switch ftr
-    case 1,%gano el visitante
-        if ha==1%es local
-            resultado=3;
-        else%es visitante
-            resultado=1;
-        end
-    case 2,%gano el local
+    case 1,%gano el local
         if ha==1%es local
             resultado=1;
         else%es visitante
             resultado=3;
         end
-    case 3,%empataron
-        resultado=2;
+    case 2,%empataron
+
+            resultado=2;
+
+    case 3,%Gano el visitante
+        if ha==1%es local
+            resultado=3;
+        else%es visitante
+            resultado=1;
+        end
 end
 
 
@@ -81,7 +83,7 @@ end
 
 %[ddirV]=encontrarPartido(datosaway,'equipovisitante',5,jornada,nomLocal);
 
-E=[dgeneral,dgeneralrival,dlocallocal,dvisvis,ddir, resultado];
+E=[dgeneral,dgeneralrival,dlocallocal,dvisvis,ddir,resultado];
 
 
 end

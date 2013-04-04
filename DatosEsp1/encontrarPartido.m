@@ -25,6 +25,8 @@ if (strcmp(parametro,'local'))
                     te12=[num2str(te1),num2str(te2)];
                     if size(te12,2)==2
                         te=['0' te12(1) '0' te12(2)];
+                    elseif size(te12,2)==3
+                        te=['0' te12];
                     else
                         te=te12;
                     end
@@ -60,6 +62,8 @@ elseif(strcmp(parametro,'visitante'))
                     te12=[num2str(te1),num2str(te2)];
                     if size(te12,2)==2
                         te=['0' te12(1) '0' te12(2)];
+                    elseif size(te12,2)==3
+                        te=['0' te12];
                     else
                         te=te12;
                     end
@@ -68,7 +72,7 @@ elseif(strcmp(parametro,'visitante'))
                 
             numpartido=[te,num2str(ppp)];
             r=find(strcmp(dat(:,1),numpartido));
-            end
+        end
         end
     end    
     if size(dat,1)==0
@@ -84,7 +88,7 @@ elseif(strcmp(parametro,'equipo'))
     
      r=find(strcmp(dat(:,1),numpartido));
 
-    if size(r,1)==0%Si el ultimo partido no fue contra ese equipo, selecciona el ultimo contra el equipo
+    if size(r,1)==0 %Si el ultimo partido no fue contra ese equipo, selecciona el ultimo contra el equipo
       if size(dat,1)~=0
                 te=numpartido(1:4);
                 d1=1;
@@ -108,20 +112,6 @@ elseif(strcmp(parametro,'equipo'))
                 d1=d1+1;
                 r=find(strcmp(dat(:,1),numpartido));
                end
-%                 if ppp==0
-%                     te1=str2double(te(1:2))-1;
-%                     te2=str2double(te(3:4))-1;
-%                     te12=[num2str(te1),num2str(te2)];
-%                     if size(te12,2)==2
-%                         te=['0' te12(1) '0' te12(2)];
-%                     else
-%                         te=te12;
-%                     end
-%                     ppp=38;
-%                end
-%                 
-%             numpartido=[te,num2str(ppp)];
-%             dat
 
       end
     end
@@ -129,7 +119,6 @@ elseif(strcmp(parametro,'equipo'))
     if size(dat,1)==0
         d=zeros(1,12);
     else
-    
     d=Partidos(dat,ventana,numpartido);
     end
     

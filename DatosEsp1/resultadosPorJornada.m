@@ -16,9 +16,9 @@ for i=1:10
     fila=(10*j+1+i);
     juego=x(fila,:);
     ahd=juego(1,7);
-    if char(ahd)=='A'
+    if char(ahd)=='H'
         FTR=1;
-    elseif char(ahd)=='H'
+    elseif char(ahd)=='D'
         FTR=2;
     else
         FTR=3;
@@ -32,11 +32,16 @@ end
 if exist('datos','var')==0
 load datosPrimeraDiv0506_1213J29.mat
 end
-
+h=zeros(10,3);
 for i=1:10
-R(i)=predecirPartido(datos,jor(i,1),jor(i,2),part);
-    
+
+[R(i),h(i,:)]=predecirPartido(datos,jor(i,1),jor(i,2),part);  
+
 end
+
+
+
 res=jor(:,3);
 prom=mean(double(cell2mat(res)==R'));
+
 end

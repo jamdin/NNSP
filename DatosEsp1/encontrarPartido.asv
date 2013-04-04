@@ -108,20 +108,6 @@ elseif(strcmp(parametro,'equipo'))
                 d1=d1+1;
                 r=find(strcmp(dat(:,1),numpartido));
                end
-%                 if ppp==0
-%                     te1=str2double(te(1:2))-1;
-%                     te2=str2double(te(3:4))-1;
-%                     te12=[num2str(te1),num2str(te2)];
-%                     if size(te12,2)==2
-%                         te=['0' te12(1) '0' te12(2)];
-%                     else
-%                         te=te12;
-%                     end
-%                     ppp=38;
-%                end
-%                 
-%             numpartido=[te,num2str(ppp)];
-%             dat
 
       end
     end
@@ -220,8 +206,10 @@ elseif(strcmp(parametro,'equipolocal'))%Contra un equipo jugando de local
     
 elseif(strcmp(parametro,'general'))
     te=numpartido(1:4);
+
+    r=find(strcmp(datosequipo(:,1),numpartido));
                 d1=1;
-               while d1<size(datosequipo,1)
+               while d1<size(datosequipo,1) && size(r,1)==0
                     f=char(datosequipo(d1,1));
                     rc=strcmp(te,f(1:4));
                 if rc==1
@@ -234,12 +222,12 @@ elseif(strcmp(parametro,'general'))
                         else
                             ind=d1-1;
                         end
-                        numpartido=dat(ind,1);
+                        numpartido=datosequipo(ind,1);
                     end
                     
                 end
                 d1=d1+1;
-                r=find(strcmp(dat(:,1),numpartido));
+                r=find(strcmp(datosequipo(:,1),numpartido));
                end
  d=Partidos(datosequipo,ventana,numpartido);
     

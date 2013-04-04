@@ -1,9 +1,9 @@
 function par=obtenerParametros(juego)
-    %Pasar Resultado A,H,D a numero 1,2,3
+    %Pasar Resultado H,D,A a numero 1,2,3
     ahd=juego(1,7);
-    if char(ahd)=='A'
+    if char(ahd)=='H'
         FTR=1;
-    elseif char(ahd)=='H'
+    elseif char(ahd)=='D'
         FTR=2;
     else
         FTR=3;

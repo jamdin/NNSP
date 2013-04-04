@@ -40,7 +40,6 @@ for i=1:size(Equipos,1) %for de todos los equipos
         end
    
     end
-    aux
 end
 
 save ('datosPrimeraDiv0506_1213J29.mat','datos','temporadas');
