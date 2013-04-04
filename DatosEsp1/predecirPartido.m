@@ -1,10 +1,10 @@
-function [Res,pr,ag]=predecirPartido(datos,nombreLocal,nombreVisitante,jornada)
+function [Res,h,ag]=predecirPartido(datos,teams,nombreLocal,nombreVisitante,jornada)
 
 load RedNeuronal.mat
 %load datosPrimeraDiv0506_1213J29
 
 ventana=10;
-teams=textread('AllTeams.txt','%s');
+%teams=textread('AllTeams.txt','%s');
 
 %Encontrar datos del equipo
 loc=strcmp(teams(:,1),nombreLocal);
@@ -20,41 +20,41 @@ ag=1;
 
 if dgeneral==z
     ag=0;
-    general=1
+    general=1;
 end
 
 [dgeneralrival]=encontrarPartido(datosvis, 'general', ventana, jornada);
 
 if dgeneralrival==z
     ag=0;
-    rival=1
+    rival=1;
 end
 
 [dlocallocal]=encontrarPartido(datoslocal,'local',5,jornada);%ultimos 5 partidos local
 
 if dlocallocal==z
     ag=0;
-    local=1
+    local=1;
 end
 
 [dvisvis]=encontrarPartido(datosvis,'visitante',5,jornada);%ultimos 5 partidos visitante
 
 if dvisvis==z
     ag=0;
-    vis=1
+    vis=1;
 end
 
 [ddir]=encontrarPartido(datoslocal,'equipo',ventana,jornada,nombreVisitante);%enfrentamiento directo
 
 if ddir==z
     ag=0;
-    dir=1
+    dir=1;
 end
 
 E=[dgeneral,dgeneralrival,dlocallocal,dvisvis, ddir];
 
-[Res,pr]=predict(Theta1,Theta2,mapminmax('apply',E',ms)');
-
+[Res,h]=predict(Theta1,Theta2,mapminmax('apply',E',ms)');
+h=h/sum(h);
 
 
 end
