@@ -1,8 +1,11 @@
 temp='0304%0405%0506%0607%0708%0809%0910%1011%1112%1213';
 r=regexp(temp,'%','split');
 e=cell(20);
+paths=encontrarPaths;
+path=paths{2};%paths{1} Espana
+              %paths{2} Inglaterra
 for i=1:10
-    s=strcat('SP',r(i),'.xlsx');
+    s=strcat(path, 'EP',r(i),'.xlsx');
     s=char(s);
     
     [n,t,x]=xlsread(s);
@@ -26,7 +29,7 @@ for i=1:10
             a=a+1;
         end
     end
-    fid = fopen(char(strcat('Equipos',r(i),'.txt')), 'wt');
+    fid = fopen(char(strcat(path,'Equipos',r(i),'.txt')), 'wt');
     for aux=1:19
     fprintf(fid, '%s\n', e{aux});
     end

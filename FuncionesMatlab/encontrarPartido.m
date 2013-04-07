@@ -70,7 +70,8 @@ elseif(strcmp(parametro,'visitante'))
                     ppp=38;
                 end
                 
-            numpartido=[te,num2str(ppp)];
+            numpartido=[te,num2str(ppp)]
+
             r=find(strcmp(dat(:,1),numpartido));
         end
         end
@@ -92,11 +93,10 @@ elseif(strcmp(parametro,'equipo'))
       if size(dat,1)~=0
                 te=numpartido(1:4);
                 d1=1;
-               while d1<size(dat,1) && size(r,1)==0
+               while d1<=size(dat,1) && size(r,1)==0
                     f=char(dat(d1,1));
                     rc=strcmp(te,f(1:4));
                 if rc==1
-                
                 ppp=str2double(numpartido(5:end));
                 pp2=str2double(f(5:end));
                     if pp2>ppp
@@ -106,6 +106,8 @@ elseif(strcmp(parametro,'equipo'))
                             ind=d1-1;
                         end
                         numpartido=dat(ind,1);
+                    else
+                        numpartido=dat(end,1);
                     end
                     
                 end
@@ -115,7 +117,7 @@ elseif(strcmp(parametro,'equipo'))
 
       end
     end
-    
+
     if size(dat,1)==0
         d=zeros(1,12);
     else

@@ -1,12 +1,17 @@
 temp='0506%0607%0708%0809%0910%1011%1112%1213';
 r=regexp(temp,'%','split');
-s=strcat('Equipos',r(1),'.txt');
+
+paths=encontrarPaths;
+path=paths{2};%paths{1} Espana
+              %paths{2} Inglaterra
+
+s=strcat(path,'Equipos',r(1),'.txt');
     s=char(s);
     C=textread(s,'%s');
     e=C;
     tam=size(C,1);
 for i=2:size(r,2) %Todas las temporadas
-    s=strcat('Equipos',r(i),'.txt');
+    s=strcat(path,'Equipos',r(i),'.txt');
     s=char(s);
     C=textread(s,'%s');
     aux={};
@@ -21,7 +26,7 @@ end
 
 orden=sort(e);
 
- fid = fopen(char(strcat('AllTeams.txt')), 'wt');
+ fid = fopen(char(strcat(path,'AllTeams.txt')), 'wt');
     for aux=1:size(orden)-1
     fprintf(fid, '%s\n', orden{aux});
     end

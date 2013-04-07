@@ -9,7 +9,7 @@ if r<=ventana
    ventana=r; 
 end
 
-if r>1
+if r>=1
 dat=datos((r-ventana+1):r,:);%Ventana de partidos
 D=resultados(dat,ventana);
 else

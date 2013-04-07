@@ -1,7 +1,12 @@
 function [E,ag]=generarDatos(datoscomp,datosequipo, jornada)
 
 ventana=10;
-teams=textread('AllTeams.txt','%s');
+
+paths=encontrarPaths;
+path=paths{2};%paths{1} Espana
+              %paths{2} Inglaterra
+
+teams=textread([path,'AllTeams.txt'],'%s');
 
 r= strcmp(datosequipo(:,1),jornada);
 rival=datosequipo(r,2);
