@@ -12,6 +12,13 @@ num_labels = 3;          % Numero de salidas
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 load EjemplosJ29SP.mat;
+desp=Ej;
+load EjemplosJ29EP.mat;
+ding=EjIng;
+load EjemplosJ29DP.mat
+dake
+%Ej=[desp;ding];
+Ej=ding;
 data=Ej(randperm(size(Ej,1)),:);%Reordena los ejemplos aleatoriamente
 X = data(:, 1:input_layer_size);
 y = data(:, (input_layer_size+1));
@@ -21,8 +28,8 @@ mx=max(X);
 % for i=1:size(X,1)
 %    Xp(i,:)=(X(i,:)-mn)./mx; 
 % end
-Xp=mapminmax(X');
-X=Xp;
+[Xp,ms]=mapminmax(X');
+X=Xp';
 
 mtrain=size(X,1)*0.8;
 mtrain=round(mtrain);
@@ -109,3 +116,5 @@ fid = fopen('Theta3_1.txt', 'wt');
 fprintf(fid, [repmat('%g\t', 1, size(Theta3,2)-1) '%g\n'], Theta3.');
 fclose(fid);
 end
+
+save('RedNeuronalIng','Theta1','Theta2','ms');

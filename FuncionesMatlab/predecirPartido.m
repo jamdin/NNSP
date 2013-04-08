@@ -1,7 +1,12 @@
-function [Res,h,ag]=predecirPartido(datos,teams,nombreLocal,nombreVisitante,jornada)
+function [Res,h,ag]=predecirPartido(c,datos,teams,nombreLocal,nombreVisitante,jornada)
 
-load RedNeuronal.mat
+%load RedNeuronal2.mat%Entrenada con solo Espana
+%load RedNeuronal2.mat%Entrenada con Espana e Inglaterra
 %load datosPrimeraDiv0506_1213J29
+
+Theta1=c{1};
+Theta2=c{2};
+ms=c{3};
 
 ventana=10;
 %teams=textread('AllTeams.txt','%s');

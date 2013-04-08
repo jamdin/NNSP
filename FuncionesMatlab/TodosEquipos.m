@@ -1,9 +1,11 @@
-temp='0506%0607%0708%0809%0910%1011%1112%1213';
+temp='0607%0708%0809%0910%1011%1112%1213';
 r=regexp(temp,'%','split');
 
 paths=encontrarPaths;
-path=paths{2};%paths{1} Espana
+path=paths{4};%paths{1} Espana
               %paths{2} Inglaterra
+              %paths{3} Alemania
+              %paths{4} Italia
 
 s=strcat(path,'Equipos',r(1),'.txt');
     s=char(s);

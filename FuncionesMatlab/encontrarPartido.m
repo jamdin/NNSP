@@ -70,7 +70,7 @@ elseif(strcmp(parametro,'visitante'))
                     ppp=38;
                 end
                 
-            numpartido=[te,num2str(ppp)]
+            numpartido=[te,num2str(ppp)];
 
             r=find(strcmp(dat(:,1),numpartido));
         end

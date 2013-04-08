@@ -3,7 +3,9 @@ function paths=encontrarPaths()
         
     pathEsp=[pwd '\DatosEsp1\'];
     pathIng=[pwd '\DatosIng1\'];
-    paths={pathEsp;pathIng};
+    pathAle=[pwd '\DatosAle1\'];
+    pathIta=[pwd '\DatosIta1\'];
+    paths={pathEsp;pathIng;pathAle;pathIta};
     
     cd FuncionesMatlab
 end
