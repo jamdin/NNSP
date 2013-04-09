@@ -1,13 +1,14 @@
-temp='0506%0607%0708%0809%0910%1011%1112%1213';
+temp='0708%0809%0910%1011%1112%1213';
 r=regexp(temp,'%','split');
 e=cell(20);
 paths=encontrarPaths;
-path=paths{4};%paths{1} Espana
+path=paths{5};%paths{1} Espana
               %paths{2} Inglaterra
               %paths{3} Alemania
               %paths{4} Italia
+              %paths{5} Francia
 for i=1:size(r,2)
-    s=strcat(path, 'IP',r(i),'.xlsx');
+    s=strcat(path, 'FP',r(i),'.xlsx');
     s=char(s);
     
     [n,t,x]=xlsread(s);

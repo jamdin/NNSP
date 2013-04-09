@@ -1,17 +1,24 @@
 temp='0506%0607%0708%0809%0910%1011%1112%1213';
 r=regexp(temp,'%','split');
 temporadas={};
+
+pts=encontrarPaths;
+path=pts{1};
+
 for i=1:size(r,2)
-s=strcat('Equipos',r(i),'.txt');
+s=strcat(path,'Equipos',r(i),'.txt');
 s=char(s);
 C=textread(s,'%s');
 C=sort(C);
 temporadas=[temporadas,C];%Todos los equipos de todas las temporadas
 end
 
-Equipos=textread('AllTeams.txt','%s');
+Equipos=textread([path,'AllTeams.txt'],'%s');
 EjAG=[];
 load datosPrimeraDiv0506_1213J29.mat
+load RedNeuronalSEDIF
+c={Theta1;Theta2;ms};
+
 for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
       tempo=r(i)
       totalPartidos=38;
@@ -20,7 +27,7 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
          totalPartidos=29; 
       end
       
-      s=strcat('SP',r(i),'.xlsx');
+      s=strcat(path,'SP',r(i),'.xlsx');
             s=char(s);
      [n,tmp,x]=xlsread(s);%se usa 
       
@@ -43,7 +50,7 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
         part=strcat(char(tempo),num2str(jornada));
 
         
-        [p,h]=predecirPartido(datos,Equipos,nombreLocal,nombreVis,part);
+        [p,h]=predecirPartido(c,datos,Equipos,nombreLocal,nombreVis,part);
         E=[h,bet365,resultado];
         EjAG=[EjAG;E];
         

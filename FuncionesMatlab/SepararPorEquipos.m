@@ -1,12 +1,13 @@
-temp='0506%0607%0708%0809%0910%1011%1112%1213';
+temp='0708%0809%0910%1011%1112%1213';
 r=regexp(temp,'%','split');
 temporadas={};
 
 paths=encontrarPaths;
-path=paths{4};%paths{1} Espana
+path=paths{5};%paths{1} Espana
               %paths{2} Inglaterra
               %paths{3} Alemania
               %paths{4} Italia
+              %paths{5} Francia
 
 for i=1:size(r,2)
 s=strcat(path,'Equipos',r(i),'.txt');
@@ -34,7 +35,7 @@ for i=1:size(Equipos,1) %for de todos los equipos
             j=j+1;
         else
             %abrir archivo de la temporada
-            s=strcat(path,'IP',r(j),'.xlsx');%SP Espana, EP Inglaterra, DP Alemania, IP Italia
+            s=strcat(path,'FP',r(j),'.xlsx');%SP Espana, EP Inglaterra, DP Alemania, IP Italia, FP Francia
             s=char(s);
             [n,tmp,x]=xlsread(s);%se usa x
         %buscar partidos de la temporada    
@@ -49,4 +50,4 @@ for i=1:size(Equipos,1) %for de todos los equipos
     end
 end
 
-save ('datosIta0506_1213.mat','datos','temporadas');
+save ('datosFra0506_1213.mat','datos','temporadas');

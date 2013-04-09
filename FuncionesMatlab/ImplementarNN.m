@@ -19,7 +19,9 @@ load EjemplosJ29DP.mat
 dale=EjAle;
 load EjemplosJ29IP.mat
 dita=EjIta;
-Ej=[desp;ding;dale;dita];
+load EjemplosJ29FP.mat
+dfra=EjFra;
+Ej=[desp;ding;dale;dita;dfra];
 data=Ej(randperm(size(Ej,1)),:);%Reordena los ejemplos aleatoriamente
 X = data(:, 1:input_layer_size);
 y = data(:, (input_layer_size+1));
@@ -118,4 +120,4 @@ fprintf(fid, [repmat('%g\t', 1, size(Theta3,2)-1) '%g\n'], Theta3.');
 fclose(fid);
 end
 
-save('RedNeuronalSEDI','Theta1','Theta2','ms');
+save('RedNeuronalSEDIF','Theta1','Theta2','ms');

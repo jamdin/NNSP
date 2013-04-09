@@ -2,8 +2,7 @@ Pasos para agregar una liga
 1-Guardar los archivos de cada temporada obtenidos de la pagina
   www.football-data.co.uk. Para guardar uso el formato 'Letra del pais'+P+Temporada.
   Por ejemplo para Espana (S) la temporada 2012-2013 es SP1213.xlsx
-  Espana (S), Inglaterra (E), Alemania (D), Italia (I), Francia (F), Holanda (H), Belgica (B), Portugal (P)
-  Turquia (T), Grecia (G)
+  Espana (S), Inglaterra (E), Alemania (D), Italia (I), Francia (F)
 
 2-Se obtienen los equipos que jugaron en cada temporada con el script DetectarEquipos.m y luego se crea el
   archivo de todos los equipos que han jugado en esa liga con el script TodosEquipos.m.

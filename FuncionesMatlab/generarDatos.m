@@ -1,12 +1,13 @@
-function [E,ag]=generarDatos(datoscomp,datosequipo, jornada)
+function [E,ag]=generarDatos(path,datoscomp,datosequipo, jornada)
 
 ventana=10;
-
-paths=encontrarPaths;
-path=paths{4};%paths{1} Espana
-              %paths{2} Inglaterra
-              %paths{3} Alemania
-              %paths{4} Italia
+% 
+% paths=encontrarPaths;
+% path=paths{5};%paths{1} Espana
+%               %paths{2} Inglaterra
+%               %paths{3} Alemania
+%               %paths{4} Italia
+%               %paths{5} Francia
 
 teams=textread([path,'AllTeams.txt'],'%s');
 

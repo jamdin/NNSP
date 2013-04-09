@@ -4,10 +4,11 @@ function se=eliminarEspacios(nombre)
             se=char(nombre);
             if size(esp,2)>0
 
-                for l=1:size(esp,2)
+                while size(esp,2)>0
                     
-                r2=[se(1:esp(l)-1),se(esp(l)+1:end)];
+                r2=[se(1:esp(1)-1),se(esp(1)+1:end)];
+                se=r2;
+                esp=find(char(se)==' ');
                 end
-            se=r2;    
             end
 end
