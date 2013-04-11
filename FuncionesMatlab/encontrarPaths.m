@@ -1,4 +1,4 @@
-function paths=encontrarPaths()
+function [paths,pathAG]=encontrarPaths()
     cd ..
         
     pathEsp=[pwd '\DatosEsp1\'];
@@ -7,6 +7,6 @@ function paths=encontrarPaths()
     pathIta=[pwd '\DatosIta1\'];
     pathFra=[pwd '\DatosFra1\'];
     paths={pathEsp;pathIng;pathAle;pathIta;pathFra};
-    
+    pathAG=[pwd '\AlgoritmoGenetico\'];
     cd FuncionesMatlab
 end
