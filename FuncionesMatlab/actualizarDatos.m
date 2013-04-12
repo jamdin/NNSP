@@ -15,7 +15,7 @@ switch liga
             path=ptas{2};
             Equipos=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
             prefijo='EP';
-            temp='0304%0405%0506%0607%0708%0809%0910%1011%1112%1213';
+            temp='0506%0607%0708%0809%0910%1011%1112%1213';
 
         case 'Alemania'
             load datosAle0506_1213.mat

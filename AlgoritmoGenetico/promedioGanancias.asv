@@ -43,7 +43,6 @@ porI=pI/(pI+nI);
 porF=pF/(pF+nF);
 
 %%%%%%%%%%
-m=[mS nS pS porS (1-porS);mE nE pE porE (1-porE);mD nD pD porD (1-porD);mI nI pI porI (1-porI);mF nF pF porF (1-porF)];
-porT=sum(m(:,3))/(sum(sum(m(:,2:3))));
-u=[mean(m(:,1)),sum(m(:,2:3)),porT, (1-porT)];
-mm=[m;u]
+m=[mS nS pS porS;mE nE pE porE;mD nD pD porD;mI nI pI porI;mF nF pF porF];
+u=[mean(m(:,1)sum(
+mm=[m;mean(m)]

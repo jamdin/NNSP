@@ -3,11 +3,6 @@
 *            Elaborado por: Jamie Diner                      *
 **************************************************************/
 
-///////////////////////////////
-//Falta agregar la funcion de guardar la forma de la ecuacion 04/04/2013
-//////////////////////////////
-
-
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,20 +21,19 @@ float calcularGanancia(void);
 float penalizarJuegos(void);
 void leerEjemplos(void);
 
-#define POBLACION 300
+#define POBLACION 500
 #define umbral 0.05
-#define NumEjemplos 2190
-#define fila 30
+#define NumEjemplos 46
+#define fila 0
 #define PenalizarCien 0
 #define RefuerzoCero 10
 #define penJuegos 0.1
-#define NumFilas 10
-#define NBYTES 30  //NBYTES=NumFilas*3
+#define NumFilas 46
+#define NBYTES 138  //NBYTES=NumFilas*3
 
-float Ejemplos[NumEjemplos][7];
+float Ejemplos[NumEjemplos][6];
 float xbet[NBYTES],xmejor[NBYTES];
 float apuestas[NumEjemplos][3],P[NumEjemplos][3];
-int Resultados[NumEjemplos];
 float G[NBYTES];
 float Inversion=0.0, apcero=0, numjuegos,apcien=0;
 
@@ -47,7 +41,7 @@ float Inversion=0.0, apcero=0, numjuegos,apcien=0;
 int main(){
 
     FILE *archivo;
-    archivo=fopen("ganancias.txt","w+");
+    archivo=fopen("apuestasTodos1.txt","w+");
     leerEjemplos();
 
     srand ( time(NULL) ); //uso semilla inicial aleatoria, diferente
@@ -94,7 +88,7 @@ int main(){
     //printf ("\nTermino en %d iteraciones\n", contador);
     int r;
     float g=0.0,a;
-    for(int i=0;i<NumFilas;i++){
+    /*for(int i=0;i<NumFilas;i++){
     r=Resultados[fila+i];
     a=apuestas[fila+i][r-1];
     g+=xmejor[i*3+(r-1)]*a;
@@ -102,6 +96,13 @@ int main(){
     }
     printf("Ganancia=%.2f Ganancia Neta=%.2f\n",g,(g-Inversion));
     fprintf(archivo,"%.4f\t%.4f\n",g,(g-Inversion));
+    */
+    for(int i=0;i<NumFilas;i++){
+            for(int j=0;j<3;j++){
+                fprintf(archivo,"%.4f\t",xmejor[j+i*3]);
+            }
+            fprintf(archivo,"\n");
+		}
 
     fclose(archivo);
 	return 0;
@@ -175,13 +176,13 @@ float penalizarJuegos(void){
 
 void leerEjemplos(void){
 
-FILE *file = fopen ("EjemplosAG.txt", "r" );
+FILE *file = fopen ("PartidosAbril1214.txt", "r" );
     int i=0;
     if ( file != NULL )
     {
    while ( i<NumEjemplos ) /* read a line */
     {
-    for(int par=0;par<7;par++){
+    for(int par=0;par<6;par++){
     fscanf(file,"%f",&Ejemplos[i][par]);
     }
     for(int p=0;p<3;p++){
@@ -194,13 +195,12 @@ FILE *file = fopen ("EjemplosAG.txt", "r" );
     for(int p=0;p<3;p++){
     apuestas[i][p]=Ejemplos[i][p+3];
     }
-    Resultados[i]=(int)Ejemplos[i][6];
     i++;}
     fclose ( file );
     }
     else
     {
-    perror ( "EjemplosAG.txt" ); /* why didn't the file open? */
+    perror ( "PartidosAbril1214.txt" ); /* why didn't the file open? */
     }
 
 

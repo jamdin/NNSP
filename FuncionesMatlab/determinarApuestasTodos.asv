@@ -1,0 +1,14 @@
+function c = determinarApuestasTodos(nApuestas)
+
+[ptas,pathAG]=encontrarPaths;
+s=[pathAG,'JornadaAbril1214.xlsx'];
+[n,t,x]=xlsread(s);
+
+equi=x(:,2:3);
+ap=load([pathAG,]);
+ap=ap/100;
+
+nap=roundn(nApuesta*ap,-3);
+c(:,1:2)=equi;
+
+end
