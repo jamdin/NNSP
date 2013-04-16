@@ -13,7 +13,7 @@ if r>=1
 dat=datos((r-ventana+1):r,:);%Ventana de partidos
 D=resultados(dat,ventana);
 else
-    D=zeros(1,12);
+    D=zeros(1,13);
     
 end
 end

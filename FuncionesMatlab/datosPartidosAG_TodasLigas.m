@@ -1,5 +1,5 @@
 [ptas,pathAG]=encontrarPaths;
-s=[pathAG,'JornadaAbril1214.xlsx'];
+s=[pathAG,'JornadaAbril57.xlsx'];
 [n,t,x]=xlsread(s);
 load RedNeuronalSEDIF
 c={Theta1;Theta2;ms};
@@ -22,23 +22,23 @@ for liga=1:5%For de las ligas
         case 1
             load datosEsp0506_1213.mat
             teams=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
-            jornada='121330';
+            jornada='121329';
         case 2
             load datosIng0506_1213.mat
             teams=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
-            jornada='121331';
+            jornada='121330';
         case 3
             load datosAle0506_1213.mat
             teams=textread([ptas{3} '\' 'AllTeams.txt'],'%s');
-            jornada='121328';
+            jornada='121327';
         case 4
             load datosIta0506_1213.mat
             teams=textread([ptas{4} '\' 'AllTeams.txt'],'%s');     
-            jornada='121331';
+            jornada='121330';
         case 5
             load datosFra0506_1213.mat
             teams=textread([ptas{5} '\' 'AllTeams.txt'],'%s');
-            jornada='121331';
+            jornada='121330';
     end
     
     for p=1:n(liga)
@@ -49,7 +49,7 @@ for liga=1:5%For de las ligas
         i=i+1;
     end
   
-fid = fopen([pathAG,'PartidosAbril1214.txt'], 'wt');
+fid = fopen([pathAG,'PartidosAbril57.txt'], 'wt');
 fprintf(fid, [repmat('%g\t', 1, size(pred,2)-1) '%g\n'], roundn(pred,-4).');
 fclose(fid);
     

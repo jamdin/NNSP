@@ -1,4 +1,4 @@
-function c=determinarApuestas(liga, nApuesta,archivoPartidos,archivoApuestas)
+function [c,esperado,retorno]=determinarApuestas(liga, nApuesta,archivoPartidos,archivoApuestas)
 % %Liga
 % 1 Espana
 % 2 Inglaterra
@@ -25,4 +25,9 @@ for f=1:10
         c(f,i+2)={nap(f,i)};
     end
 end
+
+pagos=x(:,3:5);
+esperado=sum(sum(nap.*cell2mat(pagos)));
+retorno=esperado/nApuesta;
+
 end

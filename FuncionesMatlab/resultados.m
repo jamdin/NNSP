@@ -4,7 +4,7 @@ function [R]=resultados(datos_ventana,ventana)
     %Resultado H=1,D=2,A=3
     %L/V H=1,A=2
     
-    RL=zeros(1,9);
+    RL=zeros(1,10);
     w=0;
     l=0;
     d=0;

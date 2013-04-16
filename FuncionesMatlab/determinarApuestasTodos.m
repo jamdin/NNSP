@@ -1,11 +1,12 @@
-function c = determinarApuestasTodos(nApuesta)
+function [c,pag] = determinarApuestasTodos(nApuesta)
 
 [ptas,pathAG]=encontrarPaths;
-s=[pathAG,'JornadaAbril1214.xlsx'];
+s=[pathAG,'JornadaAbril57.xlsx'];
 [n,t,x]=xlsread(s);
 
 equi=x(:,2:3);
-ap=load([pathAG,'apuestasTodos1.txt']);
+pagos=x(:,4:6);
+ap=load([pathAG,'apuestasTodos2.txt']);
 ap=ap/100;
 
 nap=roundn(nApuesta*ap,-3);
@@ -16,5 +17,7 @@ for f=1:size(x,1)
         c(f,i+2)={nap(f,i)};
     end
 end
-
+pag=nap.*cell2mat(pagos);
+esperado=sum(sum(nap.*cell2mat(pagos)))
+retorno=esperado/nApuesta
 end

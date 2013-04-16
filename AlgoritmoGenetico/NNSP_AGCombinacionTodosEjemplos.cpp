@@ -28,7 +28,7 @@ void leerEjemplos(void);
 
 #define POBLACION 300
 #define umbral 0.05
-#define NumEjemplos 1400
+#define NumEjemplos 2210
 //#define fila 30
 #define PenalizarCien 0
 #define RefuerzoCero 10
@@ -48,10 +48,10 @@ float Inversion=0.0, apcero=0, numjuegos,apcien=0;
 int main(){
 
     FILE *archivo;
-    archivo=fopen("gananciasFra.txt","w+");
+    archivo=fopen("gananciasEsp3.txt","w+");
     leerEjemplos();
 
-    for(fila=0;fila<(NumEjemplos-10);fila=fila+10){
+    for(fila=0;fila<=(NumEjemplos-10);fila=fila+10){
     printf("Fila:%d\tFitness:",fila);
     srand ( time(NULL) ); //uso semilla inicial aleatoria, diferente
 	//configuro el AG
@@ -68,7 +68,7 @@ int main(){
    {
  		ag.Generacion(); //creo una nueva generacion de individuos
 		mejor = ag.SeleccionarMejor(); //obtengo el apuntador al mejor
-    /*
+/*
 		if(contador%100==0){
 		printf("Fitness=%.2f\t%.4f %.4f %.4f\t%.4f %.4f %.4f\n",mejor->Fitness(),P[fila][0],P[fila][1],P[fila][2],G[0],G[1],G[2]);
 		for(int i=0;i<NumFilas;i++){
@@ -178,7 +178,7 @@ float penalizarJuegos(void){
 
 void leerEjemplos(void){
 
-FILE *file = fopen ("EjemplosAGFra.txt", "r" );
+FILE *file = fopen ("EjemplosAGEsp1.txt", "r" );
     int i=0;
     if ( file != NULL )
     {
@@ -203,7 +203,7 @@ FILE *file = fopen ("EjemplosAGFra.txt", "r" );
     }
     else
     {
-    perror ( "EjemplosAGFra.txt" ); /* why didn't the file open? */
+    perror ( "EjemplosAGEsp1.txt" ); /* why didn't the file open? */
     }
 
 

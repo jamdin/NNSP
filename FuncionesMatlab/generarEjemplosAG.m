@@ -1,25 +1,78 @@
-temp='0708%0809%0910%1011%1112%1213';
+liga='Espana'
+
+[pts,pathAG]=encontrarPaths;
+
+switch liga
+        case 'Espana'
+            load datosEsp0506_1213.mat
+            path=ptas{1};
+            Equipos=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
+            prefijo='SP';
+            temp='0506%0607%0708%0809%0910%1011%1112%1213';
+            dir='EjemplosSP.mat';
+            tp=31;
+            ppt=38;
+
+        case 'Inglaterra'
+            load datosIng0506_1213.mat
+            path=ptas{2};
+            Equipos=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
+            prefijo='EP';
+            temp='0506%0607%0708%0809%0910%1011%1112%1213';
+            dir='EjemplosEP.mat';
+            tp=31;
+            ppt=38;
+            
+        case 'Alemania'
+            load datosAle0506_1213.mat
+            path=ptas{3};
+            Equipos=textread([ptas{3} '\' 'AllTeams.txt'],'%s');
+            prefijo='DP';
+            temp='0607%0708%0809%0910%1011%1112%1213';
+            dir='EjemplosDP.mat';
+            tp=28;
+            ppt=34;
+            
+        case 'Italia'
+            load datosIta0506_1213.mat
+            path=ptas{4};
+            Equipos=textread([ptas{4} '\' 'AllTeams.txt'],'%s');
+            prefijo='IP';
+            temp='0506%0607%0708%0809%0910%1011%1112%1213';
+            dir='EjemplosIP.mat';
+            tp=31;
+            ppt=38;
+            
+        case 'Francia'
+            load datosFra0506_1213.mat
+            path=ptas{5};
+            Equipos=textread([ptas{5} '\' 'AllTeams.txt'],'%s');
+            prefijo='FP';
+            temp='0708%0809%0910%1011%1112%1213';
+            dir='EjemplosFP.mat';
+            tp=31;
+            ppt=38;
+end
+
+
+
 r=regexp(temp,'%','split');
 temporadas={};
-[pts,pathAG]=encontrarPaths;
-path=pts{5};%paths{1} Espana
-            %paths{2} Inglaterra
-            %paths{3} Alemania
-            %paths{4} Italia
-            %paths{5} Francia
+
 
 for i=1:size(r,2)
 s=strcat(path,'Equipos',r(i),'.txt');
 s=char(s);
 C=textread(s,'%s');
 C=sort(C);
-temporadas1=[temporadas,C];%Todos los equipos de todas las temporadas
+temporadas=[temporadas,C];%Todos los equipos de todas las temporadas
 end
 
-Equipos=textread([path,'AllTeams.txt'],'%s');
+
 EjAG=[];
-load datosFra0506_1213.mat
+
 load RedNeuronalSEDIF
+
 c={Theta1;Theta2;ms};
 size(temporadas)
 for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
@@ -30,7 +83,7 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
          totalPartidos=31; 
       end
       
-      s=strcat(path,'FP',r(i),'.xlsx');
+      s=strcat(path,prefijo,r(i),'.xlsx');
             s=char(s);
      [n,tmp,x]=xlsread(s);%se usa 
       
@@ -52,7 +105,6 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
     
         part=strcat(char(tempo),num2str(jornada));
 
-        
         [p,h]=predecirPartido(c,datos,Equipos,nombreLocal,nombreVis,part);
         E=[h,bet365,resultado];
         EjAG=[EjAG;E];
@@ -62,7 +114,7 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
     end
 end
 
-save ('EjemplosJ29AG.mat','EjAG');
-fid = fopen([pathAG,'EjemplosAGFra.txt'], 'wt');
+save ('EjemplosJ31AG.mat','EjAG');
+fid = fopen([pathAG,'EjemplosAGEsp1.txt'], 'wt');
 fprintf(fid, [repmat('%g\t', 1, size(EjAG,2)-1) '%g\n'], roundn(EjAG,-4).');
 fclose(fid);

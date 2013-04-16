@@ -11,16 +11,16 @@ num_labels = 3;          % Numero de salidas
 %                   Leer Datos                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load EjemplosJ29SP.mat;
+load EjemplosSP.mat;
 desp=Ej;
-load EjemplosJ29EP.mat;
-ding=EjIng;
-load EjemplosJ29DP.mat
-dale=EjAle;
-load EjemplosJ29IP.mat
-dita=EjIta;
-load EjemplosJ29FP.mat
-dfra=EjFra;
+load EjemplosEP.mat;
+ding=Ej;
+load EjemplosDP.mat
+dale=Ej;
+load EjemplosIP.mat
+dita=Ej;
+load EjemplosFP.mat
+dfra=Ej;
 Ej=[desp;ding;dale;dita;dfra];
 data=Ej(randperm(size(Ej,1)),:);%Reordena los ejemplos aleatoriamente
 X = data(:, 1:input_layer_size);
@@ -120,4 +120,4 @@ fprintf(fid, [repmat('%g\t', 1, size(Theta3,2)-1) '%g\n'], Theta3.');
 fclose(fid);
 end
 
-save('RedNeuronalSEDIF','Theta1','Theta2','ms');
+save('RedNeuronalSEDIF2','Theta1','Theta2','ms');

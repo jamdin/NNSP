@@ -21,27 +21,27 @@ float calcularGanancia(void);
 float penalizarJuegos(void);
 void leerEjemplos(void);
 
-#define POBLACION 500
+#define POBLACION 300
 #define umbral 0.05
-#define NumEjemplos 46
+#define NumEjemplos 10
 #define fila 0
 #define PenalizarCien 0
 #define RefuerzoCero 10
 #define penJuegos 0.1
-#define NumFilas 46
-#define NBYTES 138  //NBYTES=NumFilas*3
+#define NBYTES 30  //NBYTES=NumFilas*3
+#define partido "PartidosJ31Espp.txt"
 
 float Ejemplos[NumEjemplos][6];
 float xbet[NBYTES],xmejor[NBYTES];
 float apuestas[NumEjemplos][3],P[NumEjemplos][3];
 float G[NBYTES];
 float Inversion=0.0, apcero=0, numjuegos,apcien=0;
-
+int NumFilas;
 
 int main(){
-
+    NumFilas=NumEjemplos;
     FILE *archivo;
-    archivo=fopen("apuestasTodos1.txt","w+");
+    archivo=fopen("apuestasEsp3.txt","w+");
     leerEjemplos();
 
     srand ( time(NULL) ); //uso semilla inicial aleatoria, diferente
@@ -176,7 +176,7 @@ float penalizarJuegos(void){
 
 void leerEjemplos(void){
 
-FILE *file = fopen ("PartidosAbril1214.txt", "r" );
+FILE *file = fopen (partido, "r" );
     int i=0;
     if ( file != NULL )
     {
@@ -200,7 +200,7 @@ FILE *file = fopen ("PartidosAbril1214.txt", "r" );
     }
     else
     {
-    perror ( "PartidosAbril1214.txt" ); /* why didn't the file open? */
+    perror ( partido ); /* why didn't the file open? */
     }
 
 

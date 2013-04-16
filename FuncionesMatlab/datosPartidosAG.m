@@ -1,14 +1,14 @@
 [ptas,pathAG]=encontrarPaths;
-s=[ptas{1},'Jornada31Esp2.xlsx'];
+s=[ptas{1},'Jornada31Esp.xlsx'];
 liga='Espana';
-jornada='121330';
+jornada='121331';
 
 [n,t,x]=xlsread(s);
     switch liga
         case 'Espana'
             load datosEsp0506_1213.mat
             teams=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
-            load RedNeuronalSEDIF
+            load RedNeuronalSEDIF2
         case 'Inglaterra'
             load datosIng0506_1213.mat
             teams=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
@@ -36,6 +36,6 @@ for i=1:size(x,1)
     
 end
 
- fid = fopen([pathAG,'PartidosJ31Esp2.txt'], 'wt');
+ fid = fopen([pathAG,'PartidosJ31Espp.txt'], 'wt');
 fprintf(fid, [repmat('%g\t', 1, size(pred,2)-1) '%g\n'], roundn(pred,-4).');
 fclose(fid);
