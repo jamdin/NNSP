@@ -2,7 +2,7 @@ function C=infoTemporada(equipo,temporada,tempo)
 
     %PartidoRival H/A FTHG FTAG FTR HS AS HST AST HF AF
     %HC AC HY AY HR AR 
-    C=cell(1,18);
+    C=cell(1,20);
     i=2;
     j=1;
     while i<=size(temporada,1)%todas las jornadas

@@ -1,8 +1,8 @@
 %%=====================Redes Neuronales=======================
 clear all; close all;clc;
 
-input_layer_size  = 60;  % Cantidad de parametros
-hidden_layer_size = 10;   % Numero de Neuronas por capa oculta
+input_layer_size  = 90;  % Cantidad de parametros
+hidden_layer_size = 25;   % Numero de Neuronas por capa oculta
 hidden_layer_units = 1;   %Numero de Capas Ocultas
 num_labels = 3;          % Numero de salidas
 %(1+INPUT_UNITS)*HIDDEN_UNITS+(HIDDEN_UNITS+1)*HIDDEN_UNITS*(HIDDEN_LAYERS-1)+(HIDDEN_UNITS+1)*OUTPUT_UNITS;
@@ -11,15 +11,15 @@ num_labels = 3;          % Numero de salidas
 %                   Leer Datos                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load EjemplosSP.mat;
+load EjemplosSP23.mat;
 desp=Ej;
-load EjemplosEP.mat;
+load EjemplosEP23.mat;
 ding=Ej;
-load EjemplosDP.mat
+load EjemplosDP23.mat
 dale=Ej;
-load EjemplosIP.mat
+load EjemplosIP23.mat
 dita=Ej;
-load EjemplosFP.mat
+load EjemplosFP23.mat
 dfra=Ej;
 Ej=[desp;ding;dale;dita;dfra];
 data=Ej(randperm(size(Ej,1)),:);%Reordena los ejemplos aleatoriamente
@@ -120,4 +120,4 @@ fprintf(fid, [repmat('%g\t', 1, size(Theta3,2)-1) '%g\n'], Theta3.');
 fclose(fid);
 end
 
-save('RedNeuronalSEDIF2','Theta1','Theta2','ms');
+save('RedNeuronalSEDIF3','Theta1','Theta2','ms');

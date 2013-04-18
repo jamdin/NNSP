@@ -9,7 +9,7 @@ function par=obtenerParametros(juego)
         FTR=3;
     end
     
-    par=[juego(1,5:6),FTR,juego(1,11:22)];
+    par=[juego(1,5:6),FTR,juego(1,11:22),juego(1,8:9)];
     
 
 

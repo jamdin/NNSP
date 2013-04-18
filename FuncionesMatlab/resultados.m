@@ -4,7 +4,7 @@ function [R]=resultados(datos_ventana,ventana)
     %Resultado H=1,D=2,A=3
     %L/V H=1,A=2
     
-    RL=zeros(1,10);
+    RL=zeros(1,15);
     w=0;
     l=0;
     d=0;
@@ -42,7 +42,7 @@ function [R]=resultados(datos_ventana,ventana)
      end
         
     end
-R=100*[w,d,l,RL]/ventana;
+R=100*[w,d,l,RL]/ventana;%18 Parametros
 %R=[ganados, empatados, perdidos, goles anotados, goles recibidos, tiros,
 %tiros a puerta, faltas, faltas recibidas, corners, tarjetas amarillas,
 %tarjetas rojas]

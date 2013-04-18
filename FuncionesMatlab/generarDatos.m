@@ -20,7 +20,7 @@ datosrival=datoscomp(:,:,riv);
 ha=datosequipo{r,3};
 ftr=datosequipo{r,6};
 
-z=zeros(1,12);
+z=zeros(1,18);
 ag=1;
 
 if ha==1 %Local

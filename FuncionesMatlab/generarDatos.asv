@@ -1,10 +1,13 @@
-function [E,ag]=generarDatos(datoscomp,datosequipo, jornada)
+function [E,ag]=generarDatos(path,datoscomp,datosequipo, jornada)
 
 ventana=10;
-
-paths=encontrarPaths;
-path=paths{2};%paths{1} Espana
-              %paths{2} Inglaterra
+% 
+% paths=encontrarPaths;
+% path=paths{5};%paths{1} Espana
+%               %paths{2} Inglaterra
+%               %paths{3} Alemania
+%               %paths{4} Italia
+%               %paths{5} Francia
 
 teams=textread([path,'AllTeams.txt'],'%s');
 
@@ -17,7 +20,7 @@ datosrival=datoscomp(:,:,riv);
 ha=datosequipo{r,3};
 ftr=datosequipo{r,6};
 
-z=zeros(1,12);
+z=zeros(1,15);
 ag=1;
 
 if ha==1 %Local
