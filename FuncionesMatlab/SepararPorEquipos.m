@@ -1,4 +1,4 @@
-liga='Alemania'
+liga='Francia'
 
 [ptas,pathAG]=encontrarPaths;
 
@@ -9,7 +9,7 @@ switch liga
             Equipos=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
             prefijo='SP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='datosEsp20506_1213.mat';
+            dir='datosEsp0506_1213_puntos.mat';
             tp=31;
             ppt=38;
 
@@ -19,7 +19,7 @@ switch liga
             Equipos=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
             prefijo='EP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='datosIng20506_1213.mat';
+            dir='datosIng0506_1213_puntos.mat';
             tp=31;
             ppt=38;
             
@@ -29,7 +29,7 @@ switch liga
             Equipos=textread([ptas{3} '\' 'AllTeams.txt'],'%s');
             prefijo='DP';
             temp='0607%0708%0809%0910%1011%1112%1213';
-            dir='datosAle20506_1213.mat';
+            dir='datosAle0506_1213_puntos.mat';
             tp=28;
             ppt=34;
             
@@ -39,7 +39,7 @@ switch liga
             Equipos=textread([ptas{4} '\' 'AllTeams.txt'],'%s');
             prefijo='IP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='datosIta20506_1213.mat';
+            dir='datosIta0506_1213_puntos.mat';
             tp=31;
             ppt=38;
             
@@ -49,7 +49,7 @@ switch liga
             Equipos=textread([ptas{5} '\' 'AllTeams.txt'],'%s');
             prefijo='FP';
             temp='0708%0809%0910%1011%1112%1213';
-            dir='datosFra20506_1213.mat';
+            dir='datosFra0506_1213_puntos.mat';
             tp=31;
             ppt=38;
 end
@@ -58,7 +58,7 @@ r=regexp(temp,'%','split');
 
 
 
-datos=cell(380,20,size(Equipos,1));
+datos=cell(380,21,size(Equipos,1));
 for i=1:size(Equipos,1) %for de todos los equipos
     
     equipo=Equipos(i)
@@ -69,7 +69,6 @@ for i=1:size(Equipos,1) %for de todos los equipos
         %Revisar si participo en esa temporada
         t=temporadas(:,j);
         b=estaEnArreglo(equipo,t);
-        
         if b==0
             j=j+1;
         else
@@ -84,6 +83,7 @@ for i=1:size(Equipos,1) %for de todos los equipos
             aux=aux+size(Ceq,1);
         %aumentar j
             j=j+1;
+            
         end
    
     end

@@ -35,6 +35,10 @@ function RL=resulHA(m,lv)
         gast=ga-gapt;
         grst=gr-grpt;
 
-RL=[ga,gr,t,tap,tap/t,fouls,foulsr,corners,YC,RC,gapt,grpt,gast,grst,(1+ga)/(1+gr)];%15 parametros
+%RL=[ga,gr,t,tap,tap/t,fouls,foulsr,corners,YC,RC,gapt,grpt,gast,grst,(1+ga)/(1+gr)];%15 parametros
+%Prueba Eliminando parametros
+
+RL=[ga,gr,t,tap,(1+ga)/(1+gr)];
+
 
 end

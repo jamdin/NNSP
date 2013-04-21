@@ -1,7 +1,7 @@
 %%=====================Redes Neuronales=======================
-clear all; close all;clc;
+close all;clc;
 
-input_layer_size  = 90;  % Cantidad de parametros
+input_layer_size  = 45;  % Cantidad de parametros
 hidden_layer_size = 25;   % Numero de Neuronas por capa oculta
 hidden_layer_units = 1;   %Numero de Capas Ocultas
 num_labels = 3;          % Numero de salidas
@@ -11,22 +11,23 @@ num_labels = 3;          % Numero de salidas
 %                   Leer Datos                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load EjemplosSP23.mat;
+load EjemplosSP25.mat;
 desp=Ej;
-load EjemplosEP23.mat;
+load EjemplosEP25.mat;
 ding=Ej;
-load EjemplosDP23.mat
+load EjemplosDP25.mat
 dale=Ej;
-load EjemplosIP23.mat
+load EjemplosIP25.mat
 dita=Ej;
-load EjemplosFP23.mat
+load EjemplosFP25.mat
 dfra=Ej;
-Ej=[desp;ding;dale;dita;dfra];
+%Ej=[desp;ding;dale;dita;dfra];
+%Ej=[desp;ding;dale];
+%Ej=[desp;ding];
+Ej=dfra;
 data=Ej(randperm(size(Ej,1)),:);%Reordena los ejemplos aleatoriamente
 X = data(:, 1:input_layer_size);
 y = data(:, (input_layer_size+1));
-mn=mean(X);
-mx=max(X);
 % Xp=zeros(size(X));
 % for i=1:size(X,1)
 %    Xp(i,:)=(X(i,:)-mn)./mx; 
@@ -34,9 +35,9 @@ mx=max(X);
 [Xp,ms]=mapminmax(X');
 X=Xp';
 
-mtrain=size(X,1)*0.8;
+mtrain=size(X,1)*0.6;
 mtrain=round(mtrain);
-mcv=size(X,1)*0.2;
+mcv=size(X,1)*0.4;
 mcv=round(mcv);
 Xtrain=X(1:mtrain,:);
 ytrain=y(1:mtrain,:);
@@ -120,4 +121,4 @@ fprintf(fid, [repmat('%g\t', 1, size(Theta3,2)-1) '%g\n'], Theta3.');
 fclose(fid);
 end
 
-save('RedNeuronalSEDIF3','Theta1','Theta2','ms');
+save('RedNeuronalFptos2','Theta1','Theta2','ms');

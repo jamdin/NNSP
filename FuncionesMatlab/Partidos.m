@@ -1,4 +1,4 @@
-function [D] = Partidos(datos,ventana,numpartido)
+function [D,ptsacum,pos] = Partidos(datos,ventana,numpartido)
 %datos del equipo
 %ventana: numero de partidos
 %numpartido: a partir de cual partido
@@ -11,9 +11,10 @@ end
 
 if r>=1
 dat=datos((r-ventana+1):r,:);%Ventana de partidos
-D=resultados(dat,ventana);
+[D,ptsacum,pos]=resultados(dat,ventana);
 else
-    D=zeros(1,18);
-    
+    D=zeros(1,8);
+    ptsacum=0;
+    pos=0;
 end
 end

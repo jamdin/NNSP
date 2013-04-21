@@ -1,4 +1,4 @@
-function par=obtenerParametros(juego)
+function [par,FTR]=obtenerParametros(juego)
     %Pasar Resultado H,D,A a numero 1,2,3
     ahd=juego(1,7);
     if char(ahd)=='H'

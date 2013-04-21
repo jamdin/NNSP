@@ -1,9 +1,9 @@
 clc
-gSP=load('gananciasEspana.txt');
-gEP=load('gananciasIng.txt');
-gDP=load('gananciasAle.txt');
-gIP=load('gananciasIta.txt');
-gFP=load('gananciasFra.txt');
+gSP=load('gananciasEspS.txt');
+gEP=load('gananciasIngS.txt');
+gDP=load('gananciasAleS.txt');
+gIP=load('gananciasItaS.txt');
+gFP=load('gananciasFraS.txt');
 %Columna Ganancia neta
 gSP=gSP(:,2);
 gEP=gEP(:,2);

@@ -28,13 +28,14 @@ void leerEjemplos(void);
 
 #define POBLACION 300
 #define umbral 0.05
-#define NumEjemplos 2210
+#define NumEjemplos 1450
 //#define fila 30
 #define PenalizarCien 0
 #define RefuerzoCero 10
 #define penJuegos 0.1
 #define NumFilas 10
 #define NBYTES 30  //NBYTES=NumFilas*3
+#define datosPartido "EjemplosAGFra.txt"
 
 int fila;
 float Ejemplos[NumEjemplos][7];
@@ -48,7 +49,7 @@ float Inversion=0.0, apcero=0, numjuegos,apcien=0;
 int main(){
 
     FILE *archivo;
-    archivo=fopen("gananciasEsp3.txt","w+");
+    archivo=fopen("gananciasFraS.txt","w+");
     leerEjemplos();
 
     for(fila=0;fila<=(NumEjemplos-10);fila=fila+10){
@@ -139,7 +140,7 @@ float nuestra_funcion(unsigned char *cromosoma) // la funcion que decodifica y c
 
     float Ganancia=calcularGanancia();
     numjuegos=penalizarJuegos();
-    float fitness=Ganancia+apcero-numjuegos-apcien-Inversion;
+    float fitness=Ganancia+apcero-numjuegos-apcien;
 	return fitness;
 }
 
@@ -151,7 +152,7 @@ float calcularGanancia(void){
     for(int f=0;f<NumFilas;f++){//Recorre los ejemplos
         for(int i=0;i<3;i++){//Recorre los parametros
             Inversion+=xbet[i+f*3];
-            G[i+f*3]=xbet[i+f*3]*pow(P[f+fila][i],1)*apuestas[f+fila][i];
+            G[i+f*3]=xbet[i+f*3]*pow(P[f+fila][i],2)*apuestas[f+fila][i];
             Ganancia+=G[i+f*3];
             //printf("%.2f %.2f %.2f %.4f\n",xbet[i+f*3],pow(P[f+fila][i],1),apuestas[f+fila][i],G[i+f*3]);
             //system("PAUSE");
@@ -162,7 +163,7 @@ float calcularGanancia(void){
     Inversion=1;
     }
 
-    return 100*(Ganancia-Inversion);
+    return 100*(Ganancia*Ganancia-Inversion*Inversion);
 }
 
 float penalizarJuegos(void){
@@ -178,7 +179,7 @@ float penalizarJuegos(void){
 
 void leerEjemplos(void){
 
-FILE *file = fopen ("EjemplosAGEsp1.txt", "r" );
+FILE *file = fopen (datosPartido, "r" );
     int i=0;
     if ( file != NULL )
     {
@@ -198,12 +199,16 @@ FILE *file = fopen ("EjemplosAGEsp1.txt", "r" );
     apuestas[i][p]=Ejemplos[i][p+3];
     }
     Resultados[i]=(int)Ejemplos[i][6];
+    if(Resultados[i]==0){
+    printf("%d %d\n",Resultados[i],i);
+        system("pause");}
+
     i++;}
     fclose ( file );
     }
     else
     {
-    perror ( "EjemplosAGEsp1.txt" ); /* why didn't the file open? */
+    perror ( datosPartido ); /* why didn't the file open? */
     }
 
 

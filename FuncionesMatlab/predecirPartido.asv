@@ -1,10 +1,15 @@
-function [Res,pr,ag]=predecirPartido(nombreLocal,nombreVisitante,jornada)
+function [Res,h,ag]=predecirPartido(c,datos,teams,nombreLocal,nombreVisitante,jornada)
 
-load RedNeuronal.mat
-load datosPrimeraDiv0506_1213J29
+%load RedNeuronal2.mat%Entrenada con solo Espana
+%load RedNeuronal2.mat%Entrenada con Espana e Inglaterra
+%load datosPrimeraDiv0506_1213J29
 
-ventana=10;
-teams=textread('AllTeams.txt','%s');
+Theta1=c{1};
+Theta2=c{2};
+ms=c{3};
+
+ventana=5;
+%teams=textread('AllTeams.txt','%s');
 
 %Encontrar datos del equipo
 loc=strcmp(teams(:,1),nombreLocal);
@@ -13,41 +18,49 @@ datoslocal=datos(:,:,loc);
 vis=strcmp(teams(:,1),nombreVisitante);
 datosvis=datos(:,:,vis);
 
+z=zeros(1,18);
+ag=1;
 
 [dgeneral]=encontrarPartido(datoslocal, 'general', ventana, jornada);
 
 if dgeneral==z
     ag=0;
+    general=1;
 end
 
 [dgeneralrival]=encontrarPartido(datosvis, 'general', ventana, jornada);
 
 if dgeneralrival==z
     ag=0;
+    rival=1;
 end
 
-[dlocallocal]=encontrarPartido(datoshome,'local',5,jornada);%ultimos 5 partidos local
+[dlocallocal]=encontrarPartido(datoslocal,'local',5,jornada);%ultimos 5 partidos local
 
 if dlocallocal==z
     ag=0;
+    local=1;
 end
 
-[dvisvis]=encontrarPartido(datosaway,'visitante',5,jornada);%ultimos 5 partidos visitante
+[dvisvis]=encontrarPartido(datosvis,'visitante',5,jornada);%ultimos 5 partidos visitante
 
 if dvisvis==z
     ag=0;
+    vis=1;
 end
 
-[ddir]=encontrarPartido(datosequipo,'equipo',ventana,jornada,rival);%enfrentamiento directo
+[ddir]=encontrarPartido(datoslocal,'equipo',ventana,jornada,nombreVisitante);%enfrentamiento directo
 
 if ddir==z
     ag=0;
+    dir=1;
 end
 
-E=[dgeneral,dgeneralrival,dlocallocal,dvisvis, ddir, resultado];
+E=[dgeneral,dgeneralrival,dlocallocal,dvisvis, ddir];
 
-pp=predict(Theta1,Theta2,mapminmax('apply',E',ms)');
-
+%Res=sim(net,mapminmax('apply',E',ms)');
+ [Res,h]=predict(Theta1,Theta2,mapminmax('apply',E',ms)');
+ h=h/sum(h);
 
 
 end

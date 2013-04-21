@@ -4,39 +4,48 @@ ptas=encontrarPaths;
 
 switch liga
         case 'Espana'
-            load datosPrimeraDiv0506_1213J29.mat
+            load datosEsp0506_1213_puntos.mat
+            path=ptas{1};
             Equipos=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
             prefijo='SP';
-            temp='0506%0607%0708%0809%0910%1011%1112%1213';
+            temp='1213';
+            dir='datosEsp0506_1213_puntos.mat';
 
         case 'Inglaterra'
-            load datosIng0506_1213.mat
+            load datosIng0506_1213_puntos.mat
+            path=ptas{2};
             Equipos=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
             prefijo='EP';
-            temp='0304%0405%0506%0607%0708%0809%0910%1011%1112%1213';
-
+            temp='0506%0607%0708%0809%0910%1011%1112%1213';
+            dir='datosIng0506_1213_puntos.mat';
+            
         case 'Alemania'
-            load datosAle0506_1213.mat
+            load datosAle0506_1213_puntos.mat
+            path=ptas{3};
             Equipos=textread([ptas{3} '\' 'AllTeams.txt'],'%s');
             prefijo='DP';
             temp='0607%0708%0809%0910%1011%1112%1213';
-
+            dir='datosAle0506_1213_puntos.mat';
+            
         case 'Italia'
-            load datosIta0506_1213.mat
+            load datosIta0506_1213_puntos.mat
+            path=ptas{4};
             Equipos=textread([ptas{4} '\' 'AllTeams.txt'],'%s');
             prefijo='IP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-
+            dir='datosIta0506_1213_puntos.mat';
+            
         case 'Francia'
-            load datosFra0506_1213.mat
+            load datosFra0506_1213_puntos.mat
+            path=ptas{5};
             Equipos=textread([ptas{5} '\' 'AllTeams.txt'],'%s');
             prefijo='FP';
             temp='0708%0809%0910%1011%1112%1213';
+            dir='datosFra0506_1213_puntos.mat';
 
 end
     
 r=regexp(temp,'%','split');
-
 for i=1:size(Equipos,1) %for de todos los equipos
     
     equipo=Equipos(i)
@@ -67,7 +76,7 @@ for i=1:size(Equipos,1) %for de todos los equipos
     end
 end
 
-
+save(dir,'datos','temporadas');
 switch liga
         case 'Espana'
             save ('datosEsp0506_1213.mat','datos','temporadas');
