@@ -9,8 +9,8 @@ switch liga
             Equipos=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
             prefijo='SP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='datosEsp0506_1213_puntos2.mat';
-            tp=31;
+            dir='datosEsp0506_1213_puntos.mat';
+            tp=32;
             ppt=38;
 
         case 'Inglaterra'
@@ -20,7 +20,7 @@ switch liga
             prefijo='EP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
             dir='datosIng0506_1213_puntos.mat';
-            tp=31;
+            tp=34;
             ppt=38;
             
         case 'Alemania'
@@ -30,7 +30,7 @@ switch liga
             prefijo='DP';
             temp='0607%0708%0809%0910%1011%1112%1213';
             dir='datosAle0506_1213_puntos.mat';
-            tp=28;
+            tp=30;
             ppt=34;
             
         case 'Italia'
@@ -40,7 +40,7 @@ switch liga
             prefijo='IP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
             dir='datosIta0506_1213_puntos.mat';
-            tp=31;
+            tp=33;
             ppt=38;
             
         case 'Francia'
@@ -107,6 +107,9 @@ for i=1:size(temporadas,2) %for de todas las temporadas empezando por la 0708
 
        fila=find(strcmp(datosequipo(:,1),part));
        puntosjor=datosequipo(fila:(fila+totalPartidos-1),21)';
+       if size(puntosjor,2)~=size(cell2mat(puntosjor),1)
+           puntosjor(end)=puntosjor(end-1);
+       end
        p(j,:)=cell2mat(puntosjor);
     
      end

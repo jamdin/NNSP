@@ -56,7 +56,7 @@ switch ftr
 end
 
 
-[dgeneral,ptslocal,poslocal]=encontrarPartido(datoshome, 'general', ventana, jornada);
+[dgeneral,ptslocal,poslocal]=encontrarPartido(datoshome, 'general', ventana, jornada);%Se cambio de datosequipo a datoshome
 
 if dgeneral==z
     ag=0;

@@ -1,41 +1,51 @@
 [ptas,pathAG]=encontrarPaths;
-s=[ptas{1},'Jornada30Esp.xlsx'];
-liga='Espana';
-jornada='121329';
+s=[ptas{2},'Jornada28Ale.xlsx'];
+liga='Inglaterra';
+jornada='121331';
 
 [n,t,x]=xlsread(s);
     switch liga
         case 'Espana'
-            load datosEsp0506_1213.mat
+            load datosEsp0506_1213_puntos.mat
             teams=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
-            load RedNeuronalSEDIF
+            load RedNeuronalSptos2
         case 'Inglaterra'
-            load datosIng0506_1213.mat
+            load datosIng0506_1213_puntos.mat
             teams=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
-            load RedNeuronalSEDIF
+            load RedNeuronalEptos2
         case 'Alemania'
-            load datosAle0506_1213.mat
+            load datosAle0506_1213_puntos.mat
             teams=textread([ptas{3} '\' 'AllTeams.txt'],'%s');
-            load RedNeuronalSEDIF
+            load RedNeuronalDptos2
         case 'Italia'
-            load datosIta0506_1213.mat
+            load datosIta0506_1213_puntos.mat
             teams=textread([ptas{4} '\' 'AllTeams.txt'],'%s');
-            load RedNeuronalSEDIF
+            load RedNeuronalIptos2
         case 'Francia'
-            load datosFra0506_1213.mat
+            load datosFra0506_1213_puntos.mat
             teams=textread([ptas{5} '\' 'AllTeams.txt'],'%s');
-            load RedNeuronalSEDIF
+            load RedNeuronalFptos2
     end
     c={Theta1;Theta2;ms};
-pred=zeros(size(x,1),6);
+pred=cell(size(x,1),8);
 
 for i=1:size(x,1)
-    [p,h]=predecirPartido(c,datos,teams,x{i,1},x{i,2},jornada);
+    eqlocal=eliminarEspacios(x{i,1});
+    eqvis=eliminarEspacios(x{i,2});
+    [p,h]=predecirPartido(c,datos,teams,eqlocal,eqvis,jornada);
     ap=x(i,3:5);
-    pred(i,:)=[h,cell2mat(ap)];
+    pred(i,:)=[x(i,1),x(i,2),num2cell(h),ap];
     
 end
 
- fid = fopen([pathAG,'PartidosJ30Esp.txt'], 'wt');
-fprintf(fid, [repmat('%g\t', 1, size(pred,2)-1) '%g\n'], roundn(pred,-4).');
+%Sin Nombres
+%  fid = fopen([pathAG,'PartidosJ31Esp_conNombres.txt'], 'wt');
+% fprintf(fid, [repmat('%g\t', 1, size(pred,2)-1) '%g\n'], roundn(pred,-4).');
+% fclose(fid);
+
+%Con Nombres
+fid = fopen([pathAG,'PartidosJ31Ing_conNombres.txt'], 'wt');
+for i=1:size(pred,1)
+fprintf(fid,'%s\t%s\t%g\t%g\t%g\t%g\t%g\t%g\n',pred{i,:});
+end
 fclose(fid);

@@ -1,4 +1,4 @@
-liga='Francia'
+liga='Inglaterra'
 
 [ptas,pathAG]=encontrarPaths;
 
@@ -14,7 +14,7 @@ switch liga
             ppt=38;
             load RedNeuronalSptos2
             dir='EjemplosEspAG.mat';
-            dirtxt='EjemplosAGEsp.txt';
+            dirtxt='EjemplosAGEsp2.txt';
 
         case 'Inglaterra'
             load datosIng0506_1213_puntos.mat
@@ -23,12 +23,12 @@ switch liga
             prefijo='EP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
             dir='EjemplosEP.mat';
-            tp=31;
+            tp=32;
             ppt=38;
             NumPartidos=10;
             load RedNeuronalEptos2
             dir='EjemplosIngAG.mat';
-            dirtxt='EjemplosAGIng.txt';
+            dirtxt='EjemplosAGIng2.txt';
             
         case 'Alemania'
             load datosAle0506_1213_puntos.mat
@@ -107,9 +107,9 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
      [n,tmp,x]=xlsread(s);%se usa 
       
     for jornada=1:totalPartidos%For de las jornadas
-
+        part=strcat(char(tempo),num2str(jornada))
         for j=1:NumPartidos%for de partidos por jornada
-            fila=(j+1+NumPartidos*(jornada-1))
+            fila=(j+1+NumPartidos*(jornada-1));
         nombreLocal=eliminarEspacios(char(x(fila,3)));
         nombreVis=eliminarEspacios(char(x(fila,4)));
         hda=x(fila,7);
@@ -122,8 +122,6 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
         resultado=3;
     end
     
-        part=strcat(char(tempo),num2str(jornada));
-
         [p,h]=predecirPartido(c,datos,Equipos,nombreLocal,nombreVis,part);
         nans=sum(isnan(h),2);
         if nans==0

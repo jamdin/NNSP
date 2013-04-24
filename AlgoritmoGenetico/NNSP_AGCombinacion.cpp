@@ -23,13 +23,13 @@ void leerEjemplos(void);
 
 #define POBLACION 300
 #define umbral 0.05
-#define NumEjemplos 10
+#define NumEjemplos 8
 #define fila 0
 #define PenalizarCien 0
 #define RefuerzoCero 10
 #define penJuegos 0.1
-#define NBYTES 30  //NBYTES=NumFilas*3
-#define partido "PartidosJ31Espp.txt"
+#define NBYTES 24  //NBYTES=NumFilas*3
+#define partido "PartidosJ31Fra.txt"
 
 float Ejemplos[NumEjemplos][6];
 float xbet[NBYTES],xmejor[NBYTES];
@@ -41,7 +41,7 @@ int NumFilas;
 int main(){
     NumFilas=NumEjemplos;
     FILE *archivo;
-    archivo=fopen("apuestasEsp3.txt","w+");
+    archivo=fopen("apuestasFra31.txt","w+");
     leerEjemplos();
 
     srand ( time(NULL) ); //uso semilla inicial aleatoria, diferente
@@ -137,6 +137,78 @@ float nuestra_funcion(unsigned char *cromosoma) // la funcion que decodifica y c
 
     float Ganancia=calcularGanancia();
     numjuegos=penalizarJuegos();
+    float fitness=Ganancia+apcero-numjuegos-apcien;
+	return fitness;
+}
+
+
+float calcularGanancia(void){
+    float Ganancia=0.0;
+    Inversion=0.0;
+
+    for(int f=0;f<NumFilas;f++){//Recorre los ejemplos
+        for(int i=0;i<3;i++){//Recorre los parametros
+            Inversion+=xbet[i+f*3];
+            G[i+f*3]=xbet[i+f*3]*pow(P[f+fila][i],2)*apuestas[f+fila][i];
+            Ganancia+=G[i+f*3];
+            //printf("%.2f %.2f %.2f %.4f\n",xbet[i+f*3],pow(P[f+fila][i],1),apuestas[f+fila][i],G[i+f*3]);
+            //system("PAUSE");
+        }
+        }
+
+    if(Inversion==0){
+    Inversion=1;
+    }
+
+    return 100*(Ganancia*Ganancia-Inversion*Inversion);
+}
+
+float penalizarJuegos(void){
+    float numJuegos=0.0,inv;
+    for(int i=0;i<NBYTES;i++){
+        inv=xbet[i];
+        if(G[i]<inv){
+        numJuegos+=penJuegos;
+        }
+        }
+    return 10*numJuegos;
+    }
+
+
+
+
+
+
+
+
+/*
+float nuestra_funcion(unsigned char *cromosoma) // la funcion que decodifica y calcula el fitness de UN cromosoma
+{
+//Guardar cromosomas
+    Inversion=0.0, apcero=0.0,apcien=0.0;
+  for(int i=0;i<NBYTES;i++){
+    unsigned int x = cromosoma[i];
+    x=exGrayBinario(x);
+    xbet[i]=(100.0/255.0)*((float)x);// Mapear 0->0, 255->100
+
+    if(xbet[i]==0.0){
+    apcero+=RefuerzoCero;//reforzar solo las apuestas que en verdad tengan prob de ganar
+    }
+    Inversion+=xbet[i];
+    }
+
+    for(int i=0;i<NBYTES;i++){
+      xbet[i]=100.0*xbet[i]/Inversion;
+      }
+      Inversion=0;
+    for(int i=0;i<NBYTES;i++){
+      Inversion+=xbet[i];
+      if(xbet[i]==100.0){
+      apcien+=PenalizarCien;//reforzar solo las apuestas que en verdad tengan prob de ganar
+    }}
+
+    float Ganancia=calcularGanancia();
+    numjuegos=penalizarJuegos();
     float fitness=Ganancia+apcero-numjuegos-apcien-Inversion;
 	return fitness;
 }
@@ -173,7 +245,7 @@ float penalizarJuegos(void){
         }
     return 10*numJuegos;
     }
-
+*/
 void leerEjemplos(void){
 
 FILE *file = fopen (partido, "r" );

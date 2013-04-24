@@ -1,0 +1,26 @@
+[l,v,a1,a2,a3]=textread('gananciasTodosUnidos31_Nombre.txt','%s%s%f%f%f');
+
+equipos=[l,v];
+apuestas=[a1,a2,a3];
+c=[equipos,num2cell(apuestas)];
+equipos=sortrows(c);
+eqant=equipos{1,1};
+par=1;
+for i=2:size(equipos,1)
+if strcmp(eqant,equipos{i,1})
+p(i)=par;
+else
+eqant=equipos{i,1};
+par=par+1;
+p(i)=par;
+end
+end
+
+ceq=[num2cell(p),equipos];
+prom=cell(par,5);
+for i=1:par
+    f=find(p==i);
+    aux=equipos(f,:);
+    prom(1:2)=aux(1,1:2);
+    prom(3:5)=num2cell(mean(aux(
+end
