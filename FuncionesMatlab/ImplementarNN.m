@@ -24,7 +24,7 @@ dfra=Ej;
 %Ej=[desp;ding;dale;dita;dfra];
 %Ej=[desp;ding;dale];
 %Ej=[desp;ding];
-Ej=dfra;
+Ej=desp;
 data=Ej(randperm(size(Ej,1)),:);%Reordena los ejemplos aleatoriamente
 X = data(:, 1:input_layer_size);
 y = data(:, (input_layer_size+1));
@@ -106,6 +106,12 @@ end
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(predtr == ytrain)) * 100);
 fprintf('\nValidation Set Accuracy: %f\n', mean(double(predcv == ycv)) * 100);
 
+[p,hm]=predict(Theta1,Theta2,X);
+ymat=zeros(3,size(y,1));
+for i=1:size(y,1)
+ymat(y(i,1),i)=1;
+end
+plotconfusion(ymat,hm);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                   Guardar Matrices                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,4 +127,4 @@ fprintf(fid, [repmat('%g\t', 1, size(Theta3,2)-1) '%g\n'], Theta3.');
 fclose(fid);
 end
 
-save('RedNeuronalFptos2','Theta1','Theta2','ms');
+save('RedNeuronalSptos3','Theta1','Theta2','ms');

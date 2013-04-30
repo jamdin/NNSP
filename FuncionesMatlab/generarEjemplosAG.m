@@ -1,4 +1,4 @@
-liga='Inglaterra'
+liga='Espana'
 
 [ptas,pathAG]=encontrarPaths;
 
@@ -10,11 +10,12 @@ switch liga
             prefijo='SP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
             dir='EjemplosSP.mat';
-            tp=31;
+            tp=33;
             ppt=38;
+            NumPartidos=10;
             load RedNeuronalSptos2
             dir='EjemplosEspAG.mat';
-            dirtxt='EjemplosAGEsp2.txt';
+            dirtxt='EjemplosAGEsp33.txt';
 
         case 'Inglaterra'
             load datosIng0506_1213_puntos.mat

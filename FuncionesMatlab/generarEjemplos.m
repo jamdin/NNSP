@@ -9,7 +9,7 @@ switch liga
             Equipos=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
             prefijo='SP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='EjemplosSP25.mat';
+            dir='EjemplosSP26.mat';
             tp=31;
             ppt=38;
 
@@ -19,7 +19,7 @@ switch liga
             Equipos=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
             prefijo='EP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='EjemplosEP25.mat';
+            dir='EjemplosEP26.mat';
             tp=31;
             ppt=38;
             
@@ -29,7 +29,7 @@ switch liga
             Equipos=textread([ptas{3} '\' 'AllTeams.txt'],'%s');
             prefijo='DP';
             temp='0607%0708%0809%0910%1011%1112%1213';
-            dir='EjemplosDP25.mat';
+            dir='EjemplosDP26.mat';
             tp=28;
             ppt=34;
             
@@ -39,7 +39,7 @@ switch liga
             Equipos=textread([ptas{4} '\' 'AllTeams.txt'],'%s');
             prefijo='IP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='EjemplosIP25.mat';
+            dir='EjemplosIP26.mat';
             tp=31;
             ppt=38;
             
@@ -49,7 +49,7 @@ switch liga
             Equipos=textread([ptas{5} '\' 'AllTeams.txt'],'%s');
             prefijo='FP';
             temp='0708%0809%0910%1011%1112%1213';
-            dir='EjemplosFP25.mat';
+            dir='EjemplosFP26.mat';
             tp=31;
             ppt=38;
 end

@@ -22,24 +22,34 @@ float calcularGanancia(void);
 float penalizarJuegos(void);
 void leerEjemplos(char* datosPartido);
 void aplicarAG(void);
+void reiniciarVar(void);
+float penalizarPartidoGan(void);
+int encontrarMayor(float x,float y,float z);
 
 #define POBLACION 300
 #define umbral 0.05
-#define NumEjemplos 50
+#define NumEjemplos 70
 //#define fila 30
 #define PenalizarCien 0
 #define RefuerzoCero 10
 #define penJuegos 0.1
-#define NFilEsp 10
-#define NFilIng 7
-#define NFilAle 9
+#define penPar 0
+#define NFilEsp 9
+#define NFilIng 10
+#define NFilAle 8
 #define NFilIta 10
 #define NFilFra 10
+#define dirAp "predTodosUnidos1213AbrS4_Nombre.txt"
+#define dirEsp "PartidosJ33Esp_conNombres3.txt"
+#define dirIng "PartidosJ34Ing_conNombres.txt"
+#define dirAle "PartidosJ31Ale_conNombres.txt"
+#define dirIta "PartidosJ34Ita_conNombres.txt"
+#define dirFra "PartidosJ34Fra_conNombres.txt"
 //#define NumFilas 10
 //#define NBYTES 30  //NBYTES=NumFilas*3
 
 
-int fila,NumFilas,NBYTES;
+int fila=0,NumFilas,NBYTES;
 float Ejemplos[NumEjemplos][6],seleccion[NumEjemplos][6],sels[NFilEsp][6],sele[NFilIng][6],seld[NFilAle][6],seli[NFilIta][6],self[NFilFra][6];
 float xbet[NumEjemplos],xmejor[NumEjemplos],xsel[NumEjemplos],xselRep[NumEjemplos];
 float apuestas[NumEjemplos][3],P[NumEjemplos][3];
@@ -55,15 +65,16 @@ char EquipoSelHI[10][25],EquipoSelAI[10][25],EquipoSelHF[10][25],EquipoSelAF[10]
 int main(){
 
     FILE *archivo;
-    archivo=fopen("gananciasTodosUnidos31_Nombre.txt","w+");
+    archivo=fopen(dirAp,"w+");
     //leerEjemplos("PartidosJ31Esp_conNombres.txt");
     int indiceRep=0;
 
-    for(int rep=0;rep<15;rep++){
+    for(int rep=0;rep<10;rep++){
 
+    //reiniciarVar();
     NumFilas=NFilEsp;
     NBYTES=3*NumFilas;
-    leerEjemplos("PartidosJ31Esp_conNombres.txt");
+    leerEjemplos(dirEsp);
     aplicarAG();
      for(int i=0;i<NumFilas;i++){
          strcpy(EquipoSelHS[i],EquipoSelH[i]);
@@ -74,10 +85,10 @@ int main(){
 		}
 
 	nums=numsel;
-
+    system("PAUSE");
     NumFilas=NFilIng;
     NBYTES=3*NumFilas;
-    leerEjemplos("PartidosJ31Ing_conNombres.txt");
+    leerEjemplos(dirIng);
     aplicarAG();
      for(int i=0;i<NumFilas;i++){
          strcpy(EquipoSelHE[i],EquipoSelH[i]);
@@ -91,7 +102,7 @@ int main(){
     NumFilas=NFilAle;
     NBYTES=3*NumFilas;
 
-    leerEjemplos("PartidosJ28Ale_conNombres.txt");
+    leerEjemplos(dirAle);
     aplicarAG();
      for(int i=0;i<NumFilas;i++){
          strcpy(EquipoSelHD[i],EquipoSelH[i]);
@@ -105,7 +116,7 @@ int main(){
     NumFilas=NFilIta;
     NBYTES=3*NumFilas;
 
-	leerEjemplos("PartidosJ31Ita_conNombres.txt");
+	leerEjemplos(dirIta);
     aplicarAG();
      for(int i=0;i<NumFilas;i++){
          strcpy(EquipoSelHI[i],EquipoSelH[i]);
@@ -118,7 +129,7 @@ int main(){
 
     NumFilas=NFilFra;
     NBYTES=3*NumFilas;
-    leerEjemplos("PartidosJ31Fra_conNombres.txt");
+    leerEjemplos(dirFra);
     aplicarAG();
      for(int i=0;i<NumFilas;i++){
          strcpy(EquipoSelHF[i],EquipoSelH[i]);
@@ -219,17 +230,6 @@ int main(){
             fprintf(archivo,"\n");
 		}
 
-    /*int r;
-    float g=0.0,a;
-    for(int i=0;i<NumFilas;i++){
-    r=Resultados[fila+i];
-    a=apuestas[fila+i][r-1];
-    g+=xmejor[i*3+(r-1)]*a;
-    printf("%d %.2f %.2f %.2f\n",r,a,g,Inversion);
-    }
-    printf("Ganancia=%.2f Ganancia Neta=%.2f\n",g,(g-Inversion));
-    fprintf(archivo,"%.4f\t%.4f\n",g,(g-Inversion));*/
-
     fclose(archivo);
 	return 0;
 
@@ -262,8 +262,9 @@ float nuestra_funcion(unsigned char *cromosoma) // la funcion que decodifica y c
     }}
 
     float Ganancia=calcularGanancia();
+    float pen=penalizarPartidoGan();
     numjuegos=penalizarJuegos();
-    float fitness=Ganancia+apcero-numjuegos-apcien;
+    float fitness=Ganancia+apcero-numjuegos-apcien-pen;
 	return fitness;
 }
 
@@ -276,8 +277,6 @@ float calcularGanancia(void){
             Inversion+=xbet[i+f*3];
             G[i+f*3]=xbet[i+f*3]*pow(P[f+fila][i],2)*apuestas[f+fila][i];
             Ganancia+=G[i+f*3];
-            //printf("%.2f %.2f %.2f %.4f\n",xbet[i+f*3],pow(P[f+fila][i],1),apuestas[f+fila][i],G[i+f*3]);
-            //system("PAUSE");
         }
         }
 
@@ -301,6 +300,31 @@ float penalizarJuegos(void){
         }
     return 10*numJuegos;
     }
+
+float penalizarPartidoGan(void){
+     int mayorApuest,mayorPred;
+     float pen=0.0;
+     for(int f=0;f<NumFilas;f++){//Recorre los ejemplos
+        mayorApuest=encontrarMayor(xbet[0+f*3],xbet[1+f*3],xbet[2+f*3]);
+        mayorPred=encontrarMayor(P[f+fila][0],P[f+fila][1],P[f+fila][2]);
+
+        if(mayorApuest!=mayorPred){
+        pen+=penPar/(xbet[(mayorApuest-1)+f*3]+0.01);
+        }
+        }
+    return pen;
+}
+
+int encontrarMayor(float x,float y,float z){
+    int mayor=1;
+    if(x<y&&y>z){
+    mayor=2;}
+    if(x<z&&y<z){
+    mayor=3;
+    }
+    return mayor;
+}
+
 
 void leerEjemplos(char* datosPartido){
 
@@ -383,6 +407,8 @@ void aplicarAG(void){
     numsel=0;
     for(int i=0;i<NumFilas;i++){//Reiniciar seleccion
         xsel[i]=0;
+        strcpy(EquipoSelH[i],"");
+        strcpy(EquipoSelA[i],"");
             for(int j=0;j<7;j++){
                 seleccion[i][j]=0;
             }
@@ -417,4 +443,29 @@ void aplicarAG(void){
 
         printf("%d\n",numsel);
 //        system("PAUSE");
+}
+
+void reiniciarVar(void){
+for(int i=0;i<NumEjemplos;i++){
+    for(int j=0;j<25;j++){
+        EquipoLocal[i][j]=0;
+        EquipoVis[i][j]=0;
+        EquipoSelH[i][j]=0;
+        EquipoSelA[i][j]=0;
+}}
+for(int i=0;i<10;i++){
+    for(int j=0;j<25;j++){
+        strcpy(EquipoSelHS[i],"");
+        strcpy(EquipoSelAS[i],"");
+        strcpy(EquipoSelHE[i],"");
+        strcpy(EquipoSelAE[i],"");
+        strcpy(EquipoSelHD[i],"");
+        strcpy(EquipoSelAD[i],"");
+        strcpy(EquipoSelHI[i],"");
+        strcpy(EquipoSelAI[i],"");
+        strcpy(EquipoSelHF[i],"");
+        strcpy(EquipoSelAF[i],"");
+    }
+    }
+
 }

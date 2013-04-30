@@ -102,7 +102,9 @@ end
 
 posrelativa=abs(poslocal-posvis)/20;
 
-E=[dgeneral,dgeneralrival,dlocallocal,dvisvis,ddir,...
+dunion=dgeneral*3+dgeneralrival*3+ddir*2+dlocallocal*1+dvisvis*1;
+
+E=[dgeneral,dgeneralrival,dlocallocal,dvisvis,ddir,dunion...
     puntosh,puntosa,poslocal,posvis,posrelativa,ftr];%Cambiado el ultimo termino de resultado -> goles
                                                                     %Agregado cell2mat
             

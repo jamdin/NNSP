@@ -1,4 +1,4 @@
-[l,v,a1,a2,a3]=textread('gananciasTodosUnidos31_Nombre.txt','%s%s%f%f%f');
+[l,v,a1,a2,a3]=textread('predTodosUnidos1213AbrS4_Nombre2.txt','%s%s%f%f%f');
 
 equipos=[l,v];
 apuestas=[a1,a2,a3];
@@ -19,6 +19,7 @@ end
 end
 
 prom=cell(par,5);
+
 for i=1:par
     f=find(p==i);
     aux=equipos(f,:);
@@ -27,4 +28,12 @@ for i=1:par
     prom(i,3:5)=num2cell(mean(m,1));
 end
 s=sum(sum(cell2mat(prom(:,3:5))));
-prom(:,3:5)=num2cell(round(100*cell2mat(prom(:,3:5))/s))
+rn=round(100*cell2mat(prom(:,3:5))/s);
+sf=sum(rn,2);
+f=find(sf~=0);
+prom(:,3:5)=num2cell(rn);
+prom=prom(f,:)
+
+
+
+

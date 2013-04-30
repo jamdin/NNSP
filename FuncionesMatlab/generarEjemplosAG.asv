@@ -1,37 +1,119 @@
-temp='0506%0607%0708%0809%0910%1011%1112%1213';
-r=regexp(temp,'%','split');
-temporadas={};
-for i=1:size(r,2)
-s=strcat('Equipos',r(i),'.txt');
-s=char(s);
-C=textread(s,'%s');
-C=sort(C);
-temporadas=[temporadas,C];%Todos los equipos de todas las temporadas
+liga='Espana'
+
+[ptas,pathAG]=encontrarPaths;
+
+switch liga
+        case 'Espana'
+            load datosEsp0506_1213_puntos.mat
+            path=ptas{1};
+            Equipos=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
+            prefijo='SP';
+            temp='0506%0607%0708%0809%0910%1011%1112%1213';
+            dir='EjemplosSP.mat';
+            tp=31;
+            ppt=38;
+            load RedNeuronalSptos2
+            dir='EjemplosEspAG.mat';
+            dirtxt='EjemplosAGEsp2.txt';
+
+        case 'Inglaterra'
+            load datosIng0506_1213_puntos.mat
+            path=ptas{2};
+            Equipos=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
+            prefijo='EP';
+            temp='0506%0607%0708%0809%0910%1011%1112%1213';
+            dir='EjemplosEP.mat';
+            tp=32;
+            ppt=38;
+            NumPartidos=10;
+            load RedNeuronalEptos2
+            dir='EjemplosIngAG.mat';
+            dirtxt='EjemplosAGIng2.txt';
+            
+        case 'Alemania'
+            load datosAle0506_1213_puntos.mat
+            path=ptas{3};
+            Equipos=textread([ptas{3} '\' 'AllTeams.txt'],'%s');
+            prefijo='DP';
+            temp='0607%0708%0809%0910%1011%1112%1213';
+            dir='EjemplosDP.mat';
+            tp=28;
+            ppt=34;
+            load RedNeuronalDptos2
+            NumPartidos=9;
+            dir='EjemplosAleAG.mat';
+            dirtxt='EjemplosAGAle.txt';
+            
+        case 'Italia'
+            load datosIta0506_1213_puntos.mat
+            path=ptas{4};
+            Equipos=textread([ptas{4} '\' 'AllTeams.txt'],'%s');
+            prefijo='IP';
+            temp='0506%0607%0708%0809%0910%1011%1112%1213';
+            dir='EjemplosIP.mat';
+            tp=31;
+            ppt=38;
+            NumPartidos=10;
+            load RedNeuronalIptos2
+            dir='EjemplosItaAG.mat';
+            dirtxt='EjemplosAGIta.txt';
+            
+        case 'Francia'
+            load datosFra0506_1213_puntos.mat
+            path=ptas{5};
+            Equipos=textread([ptas{5} '\' 'AllTeams.txt'],'%s');
+            prefijo='FP';
+            temp='0708%0809%0910%1011%1112%1213';
+            dir='EjemplosFP.mat';
+            tp=31;
+            ppt=38;
+            NumPartidos=10;
+            load RedNeuronalFptos2
+            dir='EjemplosFraAG.mat';
+            dirtxt='EjemplosAGFra.txt';
 end
 
-Equipos=textread('AllTeams.txt','%s');
-Ej=[];
-load datosPrimeraDiv0506_1213J29.mat
+
+
+r=regexp(temp,'%','split');
+% temporadas={};
+% 
+% 
+% for i=1:size(r,2)
+% s=strcat(path,'Equipos',r(i),'.txt');
+% s=char(s);
+% C=textread(s,'%s');
+% C=sort(C);
+% temporadas=[temporadas,C];%Todos los equipos de todas las temporadas
+% end
+
+
+EjAG=[];
+
+
+
+c={Theta1;Theta2;ms};
+size(temporadas)
 for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
       tempo=r(i)
-      totalPartidos=38;
-      
+      totalPartidos=ppt;
+
       if i==size(temporadas,2)
-         totalPartidos=29; 
+         totalPartidos=tp; 
       end
       
-      s=strcat('SP',r(i),'.xlsx');
+      s=strcat(path,prefijo,r(i),'.xlsx');
             s=char(s);
      [n,tmp,x]=xlsread(s);%se usa 
       
     for jornada=1:totalPartidos%For de las jornadas
-        
-        for j=1:10%for de partidos por jornada
-            fila=(j+1+10*(jornada-1));
-        nombreLocal=x(j,3);
-        nombreVis=x(j,4);
-        hda=x(j,7);
-        bet365=x(j,23:25);
+        part=strcat(char(tempo),num2str(jornada))
+        for j=1:NumPartidos%for de partidos por jornada
+            fila=(j+1+NumPartidos*(jornada-1));
+        nombreLocal=eliminarEspacios(char(x(fila,3)));
+        nombreVis=eliminarEspacios(char(x(fila,4)));
+        hda=x(fila,7);
+        bet365=cell2mat(x(fila,23:25));
     if char(hda)=='H'
         resultado=1;
     elseif char(hda)=='D'
@@ -40,18 +122,20 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
         resultado=3;
     end
     
-        part=strcat(char(tempo),num2str(jornada))
-        wh(part)
-        
-        [p,h]=predecirPartido(datos,Equipos,nombreLocal,nombreVis,part);
+        [p,h]=predecirPartido(c,datos,Equipos,nombreLocal,nombreVis,part);
+        nans=sum(isnan(h),2);
+        if nans==0
         E=[h,bet365,resultado];
-        if ag==1
-        Ej=[Ej;E];
+        EjAG=[EjAG;E];
         end
         
         end
     end
-    
 end
-
-save ('EjemplosJ29SP.mat','Ej');
+EjAG(:,1)=EjAG(:,1)*PesoH;
+EjAG(:,2)=EjAG(:,2)*PesoD;
+EjAG(:,3)=EjAG(:,3)*PesoA;
+save (dir,'EjAG');
+fid = fopen([pathAG,dirtxt], 'wt');
+fprintf(fid, [repmat('%g\t', 1, size(EjAG,2)-1) '%g\n'], roundn(EjAG,-4).');
+fclose(fid);

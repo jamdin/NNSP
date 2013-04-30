@@ -10,7 +10,7 @@ switch liga
             prefijo='SP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
             dir='datosEsp0506_1213_puntos.mat';
-            tp=32;
+            tp=33;
             ppt=38;
 
         case 'Inglaterra'
@@ -20,7 +20,7 @@ switch liga
             prefijo='EP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
             dir='datosIng0506_1213_puntos.mat';
-            tp=34;
+            tp=35;
             ppt=38;
             
         case 'Alemania'
@@ -30,7 +30,7 @@ switch liga
             prefijo='DP';
             temp='0607%0708%0809%0910%1011%1112%1213';
             dir='datosAle0506_1213_puntos.mat';
-            tp=30;
+            tp=31;
             ppt=34;
             
         case 'Italia'
@@ -40,7 +40,7 @@ switch liga
             prefijo='IP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
             dir='datosIta0506_1213_puntos.mat';
-            tp=33;
+            tp=34;
             ppt=38;
             
         case 'Francia'
@@ -50,7 +50,7 @@ switch liga
             prefijo='FP';
             temp='0708%0809%0910%1011%1112%1213';
             dir='datosFra0506_1213_puntos.mat';
-            tp=31;
+            tp=34;
             ppt=38;
 
 end
