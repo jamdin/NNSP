@@ -1,20 +1,20 @@
-temp='0506%0607%0708%0809%0910%1011%1112%1213';
+temp='0607%0708%0809%0910%1011%1112%1213';
 r=regexp(temp,'%','split');
-e=cell(20);
+e=cell(18);
 paths=encontrarPaths;
-path=paths{4};%paths{1} Espana
+path=paths{3};%paths{1} Espana
               %paths{2} Inglaterra
               %paths{3} Alemania
               %paths{4} Italia
               %paths{5} Francia
 for i=1:size(r,2)
-    s=strcat(path, 'IP',r(i),'.xlsx');
+    s=strcat(path, 'DP',r(i),'.xlsx');
     s=char(s);
     
     [n,t,x]=xlsread(s);
     
     a=1;
-    for j=1:10
+    for j=1:9
         for k=3:4
             e2=t(j+1,k);
 %             esp=find(char(e2)==' ');      Sustituido por eliminarEspacios

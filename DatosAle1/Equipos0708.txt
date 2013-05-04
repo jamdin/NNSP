@@ -16,5 +16,4 @@ Dortmund
 Duisburg
 Nurnberg
 Karlsruhe
-Karlsruhe
-Hannover
+

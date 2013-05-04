@@ -1,4 +1,4 @@
-liga='Francia'
+liga='Alemania'
 
 [ptas,pathAG]=encontrarPaths;
 
@@ -58,7 +58,7 @@ r=regexp(temp,'%','split');
 
 
 
-datos=cell(380,21,size(Equipos,1));
+datos=cell(380,22,size(Equipos,1));
 for i=1:size(Equipos,1) %for de todos los equipos
     
     equipo=Equipos(i)

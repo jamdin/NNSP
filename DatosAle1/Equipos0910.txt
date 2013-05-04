@@ -13,6 +13,7 @@ Schalke04
 WerderBremen
 EinFrankfurt
 Bochum
-M'gladbach
+Mgladbach
 Freiburg
 Hamburg
+

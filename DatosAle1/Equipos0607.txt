@@ -6,7 +6,7 @@ Leverkusen
 Aachen
 Mainz
 Bochum
-M'gladbach
+Mgladbach
 Cottbus
 Schalke04
 EinFrankfurt
@@ -16,5 +16,4 @@ Hannover
 WerderBremen
 Wolfsburg
 Hertha
-Nurnberg
-M'gladbach
+

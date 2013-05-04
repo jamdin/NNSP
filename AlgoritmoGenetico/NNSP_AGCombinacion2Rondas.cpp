@@ -39,12 +39,12 @@ int encontrarMayor(float x,float y,float z);
 #define NFilAle 8
 #define NFilIta 10
 #define NFilFra 10
-#define dirAp "predTodosUnidos1213AbrS4_Nombre.txt"
-#define dirEsp "PartidosJ33Esp_conNombres3.txt"
-#define dirIng "PartidosJ34Ing_conNombres.txt"
-#define dirAle "PartidosJ31Ale_conNombres.txt"
-#define dirIta "PartidosJ34Ita_conNombres.txt"
-#define dirFra "PartidosJ34Fra_conNombres.txt"
+#define dirAp "predTodosUnidos1213MayS1_Nombre.txt"
+#define dirEsp "PartidosJ34Esp_conNombres.txt"
+#define dirIng "PartidosJ36Ing_conNombres.txt"
+#define dirAle "PartidosJ32Ale_conNombres.txt"
+#define dirIta "PartidosJ35Ita_conNombres.txt"
+#define dirFra "PartidosJ35Fra_conNombres.txt"
 //#define NumFilas 10
 //#define NBYTES 30  //NBYTES=NumFilas*3
 
@@ -85,7 +85,7 @@ int main(){
 		}
 
 	nums=numsel;
-    system("PAUSE");
+    //system("PAUSE");
     NumFilas=NFilIng;
     NBYTES=3*NumFilas;
     leerEjemplos(dirIng);

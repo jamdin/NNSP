@@ -1,4 +1,4 @@
-function [paths,pathAG]=encontrarPaths(guivar)
+function [paths,pathAG]=encontrarPaths(gui)
     cd ..
         
     pathEsp=[pwd '\DatosEsp1\'];
@@ -9,9 +9,5 @@ function [paths,pathAG]=encontrarPaths(guivar)
     paths={pathEsp;pathIng;pathAle;pathIta;pathFra};
     pathAG=[pwd '\AlgoritmoGenetico\'];
     
-    if exist('guivar')
-        cd NNSPGUI
-    else
-        cd FuncionesMatlab
-    end
+    cd FuncionesMatlab
 end

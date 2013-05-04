@@ -1,6 +1,7 @@
+function pred=datosPartidosAG(liga,par)
 [ptas,pathAG]=encontrarPaths;
 
-liga='Espana';
+%liga='Espana';
 
 
 
@@ -12,8 +13,7 @@ liga='Espana';
             s=[ptas{1},'SPFixture1213.xlsx'];
             s=[ptas{1},'Jornada33Esp.xlsx'];
             dir='PartidosJ33Esp_conNombres3.txt';
-            jornada='121333';
-            par=34;
+            jornada=['1213' num2str(par)];
         case 'Inglaterra'
             load datosIng0506_1213_puntos.mat
             teams=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
@@ -21,8 +21,7 @@ liga='Espana';
             s=[ptas{2},'EPFixture1213.xlsx'];
             %s=[ptas{2},'Jornada34Ing.xlsx'];
             dir='PartidosJ35Ing_conNombres.txt';
-            jornada='121335';
-            par=35;
+            jornada=['1213' num2str(par)];
         case 'Alemania'
             load datosAle0506_1213_puntos.mat
             teams=textread([ptas{3} '\' 'AllTeams.txt'],'%s');
@@ -30,8 +29,7 @@ liga='Espana';
             s=[ptas{3},'DPFixture1213.xlsx'];
             %s=[ptas{3},'Jornada31Ale.xlsx'];
             dir='PartidosJ32Ale_conNombres.txt';
-            jornada='121332';
-            par=32;
+            jornada=['1213' num2str(par)];
         case 'Italia'
             load datosIta0506_1213_puntos.mat
             teams=textread([ptas{4} '\' 'AllTeams.txt'],'%s');
@@ -39,8 +37,7 @@ liga='Espana';
             s=[ptas{4},'IPFixture1213.xlsx'];
             %s=[ptas{4},'Jornada34Ita.xlsx'];
             dir='PartidosJ35Ita_conNombres.txt';
-            jornada='121335';
-            par=35;
+            jornada=['1213' num2str(par)];
         case 'Francia'
             load datosFra0506_1213_puntos.mat
             teams=textread([ptas{5} '\' 'AllTeams.txt'],'%s');
@@ -48,8 +45,7 @@ liga='Espana';
             s=[ptas{5},'FPFixture1213.xlsx'];
             %s=[ptas{5},'Jornada34Fra.xlsx'];
             dir='PartidosJ35Fra_conNombres.txt';
-            jornada='121335';
-            par=35;
+            jornada=['1213' num2str(par)];
     end
     
     [n,t,x]=xlsread(s);
@@ -57,18 +53,17 @@ liga='Espana';
 %     xsub=x(f,2:end);
     xsub=x;
     c={Theta1;Theta2;ms};
-    pred=cell(size(x,1),8);
+    pred=cell(size(xsub,1),8);
 
-for i=1:size(x,1)
+for i=1:size(xsub,1)
     eqlocal=eliminarEspacios(xsub{i,1});
     eqvis=eliminarEspacios(xsub{i,2});
     [p,h]=predecirPartido(c,datos,teams,eqlocal,eqvis,jornada);
 
-    ap=x(i,3:5);
+    ap=xsub(i,3:5);
     pred(i,:)=[xsub(i,1),xsub(i,2),num2cell(h),ap];
     
 end
-pred
 %Sin Nombres
 %  fid = fopen([pathAG,'PartidosJ31Esp_conNombres.txt'], 'wt');
 % fprintf(fid, [repmat('%g\t', 1, size(pred,2)-1) '%g\n'], roundn(pred,-4).');
@@ -80,3 +75,4 @@ for i=1:size(pred,1)
 fprintf(fid,'%s\t%s\t%g\t%g\t%g\t%g\t%g\t%g\n',pred{i,:});
 end
 fclose(fid);
+end

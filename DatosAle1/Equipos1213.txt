@@ -10,9 +10,10 @@ GreutherFurth
 BayernMunich
 Hamburg
 Nurnberg
-M'gladbach
+Mgladbach
 Hoffenheim
 Hannover
 Schalke04
 Stuttgart
 Wolfsburg
+

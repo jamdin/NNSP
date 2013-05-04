@@ -1,4 +1,4 @@
-[l,v,a1,a2,a3]=textread('predTodosUnidos1213AbrS4_Nombre2.txt','%s%s%f%f%f');
+[l,v,a1,a2,a3]=textread('predTodosUnidos1213MayS1_Nombre.txt','%s%s%f%f%f');
 
 equipos=[l,v];
 apuestas=[a1,a2,a3];
