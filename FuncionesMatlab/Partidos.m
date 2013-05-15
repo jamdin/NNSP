@@ -13,7 +13,7 @@ if r>=1
 dat=datos((r-ventana+1):r,:);%Ventana de partidos
 [D,ptsacum,pos]=resultados(dat,ventana);
 else
-    D=zeros(1,8);
+    D=zeros(1,9);
     ptsacum=0;
     pos=0;
 end

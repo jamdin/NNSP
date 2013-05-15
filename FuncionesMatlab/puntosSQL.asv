@@ -1,0 +1,9 @@
+function ptos=puntosSQL(datab,equipo)
+    conn=database(datab,'','');
+    sel=['SELECT * FROM ' equipo '$ WHERE Temporada=''' temporada ''''];
+    c=exec(conn,sel);
+    c=fetch(c,38);
+    dat=c.data;
+
+
+end

@@ -1,0 +1,8 @@
+function datos=encontrarSQL(datab,equipo,parametro,valorparametro,numejemplos,jornada,temporada)
+
+    conn=database(datab,'','');
+    sel=['SELECT * FROM ' equipo '$ WHERE' parametro '=''' valorparametro ''''...
+        'AND (Temporada=''' temporada ''' AND Jornada<' jornada 'OR Temporada<''' temporada ''...
+        'ORDER BY Temporada Desc, Jornada Desc'];
+
+end

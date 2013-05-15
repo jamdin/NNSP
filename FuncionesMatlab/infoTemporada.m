@@ -2,7 +2,7 @@ function C=infoTemporada(equipo,temporada,tempo)
 
     %PartidoRival H/A FTHG FTAG FTR HS AS HST AST HF AF
     %HC AC HY AY HR AR 
-    C=cell(1,22);
+    C=cell(1,21);
     i=2;
     j=1;
     puntos=0;
@@ -20,7 +20,7 @@ function C=infoTemporada(equipo,temporada,tempo)
             p=calcularPuntos(ha,FTR);
             puntos=puntos+p;
             tempor=char([char(tempo) num2str(j)]);
-            C(j,:)=[char(tempo),j, Rival, ha, par,puntos];%Separado temporada y jornada
+            C(j,:)=[tempor, Rival, ha, par,puntos];%Separado temporada y jornada
             i=i+1;
             j=j+1;
         end

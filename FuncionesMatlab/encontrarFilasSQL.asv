@@ -1,0 +1,11 @@
+function filas=encontrarFilasSQL(db,equipo,temporada)
+    conn=database(db,'','');
+    query=['SELECT * FROM ' equipo '$ WHERE Temporada=''' temporada ''''];
+    c=exec(conn,query);
+    c=fetch(c,38);
+    
+    
+
+
+
+end

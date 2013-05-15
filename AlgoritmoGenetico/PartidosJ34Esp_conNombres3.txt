@@ -1,0 +1,10 @@
+Celta	AthBilbao	0.545164	0.204433	0.205303			
+Valencia	Osasuna	0.831243	0.124114	0.0614837			
+Granada	Malaga	0.581758	0.0976457	0.290013			
+RealMadrid	Valladolid	0.968292	0.0395091	0.00982168			
+LaCoruna	AthMadrid	0.580911	0.204289	0.181857			
+Mallorca	Levante	0.872752	0.0787048	0.0451727			
+Zaragoza	Vallecano	0.441784	0.241708	0.29896			
+Sevilla	Espanol	0.14916	0.139004	0.669493			
+Barcelona	Betis	0.946656	0.0660868	0.013633			
+Getafe	Sociedad	0.695586	0.258632	0.0703071			

@@ -1,4 +1,4 @@
-function pred=datosPartidosAG(liga,par)
+function [pred,res]=datosPartidosAG(liga,par)
 [ptas,pathAG]=encontrarPaths;
 
 %liga='Espana';
@@ -9,10 +9,11 @@ function pred=datosPartidosAG(liga,par)
         case 'Espana'
             load datosEsp0506_1213_puntos.mat
             teams=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
-            load RedNeuronalSptos2
+            %load RedNeuronalSptos2
+            load RedNeuronalSPDir
             s=[ptas{1},'SPFixture1213.xlsx'];
-            s=[ptas{1},'Jornada33Esp.xlsx'];
-            dir='PartidosJ33Esp_conNombres3.txt';
+%             s=[ptas{1},'Jornada' num2str(par) 'Esp.xlsx'];
+            dir=['PartidosJ' num2str(par) 'Esp_conNombres3.txt'];
             jornada=['1213' num2str(par)];
         case 'Inglaterra'
             load datosIng0506_1213_puntos.mat
@@ -49,17 +50,17 @@ function pred=datosPartidosAG(liga,par)
     end
     
     [n,t,x]=xlsread(s);
-%     f=find(cell2mat(x(:,1))==par);
-%     xsub=x(f,2:end);
-    xsub=x;
+    f=find(cell2mat(x(:,1))==par);
+     xsub=x(f,2:end);
     c={Theta1;Theta2;ms};
     pred=cell(size(xsub,1),8);
-
+    xsub(:,3:5)=cell(size(xsub,1),3);
+    res=[];
 for i=1:size(xsub,1)
     eqlocal=eliminarEspacios(xsub{i,1});
     eqvis=eliminarEspacios(xsub{i,2});
-    [p,h]=predecirPartido(c,datos,teams,eqlocal,eqvis,jornada);
-
+    [p,h]=predecirPartido2(c,datos,teams,eqlocal,eqvis,jornada);
+    res=[res;p];
     ap=xsub(i,3:5);
     pred(i,:)=[xsub(i,1),xsub(i,2),num2cell(h),ap];
     

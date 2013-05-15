@@ -47,7 +47,7 @@ if (strcmp(parametro,'local'))
 
     
     if size(dat,1)==0
-        d=zeros(1,8);
+        d=zeros(1,9);
     else
     
     d=Partidos(dat,ventana,numpartido);
@@ -88,7 +88,7 @@ elseif(strcmp(parametro,'visitante'))
     
 
     if size(dat,1)==0
-        d=zeros(1,8);
+        d=zeros(1,9);
     else
     
     d=Partidos(dat,ventana,numpartido);
@@ -129,7 +129,7 @@ elseif(strcmp(parametro,'equipo'))
     
 
     if size(dat,1)==0
-        d=zeros(1,8);
+        d=zeros(1,9);
     else
 
     d=Partidos(dat,ventana,numpartido);
@@ -174,7 +174,7 @@ elseif(strcmp(parametro,'equipovisitante'))%Contra un equipo jugando de visitant
      
  
     if size(dat,1)==0
-        d=zeros(1,8);
+        d=zeros(1,9);
     else
     
     d=Partidos(dat,ventana,numpartido);
@@ -220,7 +220,7 @@ elseif(strcmp(parametro,'equipolocal'))%Contra un equipo jugando de local
     
 
     if size(dat,1)==0
-        d=zeros(1,8);
+        d=zeros(1,9);
     else
     d=Partidos(dat,ventana,numpartido);
     end
@@ -259,7 +259,7 @@ elseif(strcmp(parametro,'general'))
     
     
  if size(dat,1)==0
-        d=zeros(1,8);
+        d=zeros(1,9);
  else
  
  [d,ptsacum,pos]=Partidos(datosequipo,ventana,numpartido);

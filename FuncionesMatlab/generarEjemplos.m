@@ -9,7 +9,7 @@ switch liga
             Equipos=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
             prefijo='SP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='EjemplosSP26.mat';
+            dir='EjemplosSPDividido.mat';
             tp=31;
             ppt=38;
 
@@ -19,7 +19,7 @@ switch liga
             Equipos=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
             prefijo='EP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='EjemplosEP26.mat';
+            dir='EjemplosEPDividido.mat';
             tp=31;
             ppt=38;
             
@@ -29,7 +29,7 @@ switch liga
             Equipos=textread([ptas{3} '\' 'AllTeams.txt'],'%s');
             prefijo='DP';
             temp='0607%0708%0809%0910%1011%1112%1213';
-            dir='EjemplosDP26.mat';
+            dir='EjemplosDPDividido.mat';
             tp=28;
             ppt=34;
             
@@ -39,7 +39,7 @@ switch liga
             Equipos=textread([ptas{4} '\' 'AllTeams.txt'],'%s');
             prefijo='IP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='EjemplosIP26.mat';
+            dir='EjemplosIPDividido.mat';
             tp=31;
             ppt=38;
             
@@ -49,14 +49,16 @@ switch liga
             Equipos=textread([ptas{5} '\' 'AllTeams.txt'],'%s');
             prefijo='FP';
             temp='0708%0809%0910%1011%1112%1213';
-            dir='EjemplosFP26.mat';
+            dir='EjemplosFPDividido.mat';
             tp=31;
             ppt=38;
 end
 
 r=regexp(temp,'%','split');
 
-Ej=[];
+Ejlocal=[];
+Ejdirect=[];
+Ejvisit=[];
 for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
       tempo=r(i)
       totalPartidos=ppt;
@@ -74,10 +76,12 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
         for jornada=1:totalPartidos
 
         part=strcat(char(tempo),num2str(jornada));
-        [E,ag]=generarDatos(path,datos,datosequipo,part);
+        [Ejloc,Ejdir,Ejvis,ag]=generarDatos(path,datos,datosequipo,part);
         
         if ag==1
-        Ej=[Ej;E];
+        Ejlocal=[Ejlocal;Ejloc];
+        Ejdirect=[Ejdirect;Ejdir];
+        Ejvisit=[Ejvisit;Ejvis];
         end
         
         end
@@ -85,5 +89,5 @@ for i=3:size(temporadas,2) %for de todas las temporadas empezando por la 0708
     
 end
 
-save (dir,'Ej');
+save (dir,'Ejlocal','Ejdirect','Ejvisit');
 end

@@ -1,0 +1,9 @@
+function y=predfuzz(x,tabla1,tabla2,b,c,w)
+%Prediccion Local
+xloc=x(1:5);
+bloc=b(:,1);
+
+y=predY(xloc,bloc,cloc,wloc,tabla1);
+
+
+end

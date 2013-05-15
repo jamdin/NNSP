@@ -1,0 +1,5 @@
+function i=insertarPosicionSQL(datab,equipo,posicion)
+    conn=database(datab,'','');
+    sel=['SELECT * FROM ' equipo '$ WHERE Temporada=''' temporada ''''];
+
+end

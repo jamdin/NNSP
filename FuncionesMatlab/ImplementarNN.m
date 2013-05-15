@@ -1,8 +1,8 @@
 %%=====================Redes Neuronales=======================
 close all;clc;
 
-input_layer_size  = 45;  % Cantidad de parametros
-hidden_layer_size = 25;   % Numero de Neuronas por capa oculta
+input_layer_size  = 9;  % Cantidad de parametros
+hidden_layer_size = 30;   % Numero de Neuronas por capa oculta
 hidden_layer_units = 1;   %Numero de Capas Ocultas
 num_labels = 3;          % Numero de salidas
 %(1+INPUT_UNITS)*HIDDEN_UNITS+(HIDDEN_UNITS+1)*HIDDEN_UNITS*(HIDDEN_LAYERS-1)+(HIDDEN_UNITS+1)*OUTPUT_UNITS;
@@ -11,15 +11,15 @@ num_labels = 3;          % Numero de salidas
 %                   Leer Datos                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load EjemplosSP25.mat;
-desp=Ej;
-load EjemplosEP25.mat;
+load EjemplosSPUnion3.mat;
+desp=EjUnion;
+load EjemplosEPDir.mat;
 ding=Ej;
-load EjemplosDP25.mat
+load EjemplosDPDir.mat
 dale=Ej;
-load EjemplosIP25.mat
+load EjemplosIPDir.mat
 dita=Ej;
-load EjemplosFP25.mat
+load EjemplosFPDir.mat
 dfra=Ej;
 %Ej=[desp;ding;dale;dita;dfra];
 %Ej=[desp;ding;dale];
@@ -35,9 +35,9 @@ y = data(:, (input_layer_size+1));
 [Xp,ms]=mapminmax(X');
 X=Xp';
 
-mtrain=size(X,1)*0.6;
+mtrain=size(X,1)*0.75;
 mtrain=round(mtrain);
-mcv=size(X,1)*0.4;
+mcv=size(X,1)*0.25;
 mcv=round(mcv);
 Xtrain=X(1:mtrain,:);
 ytrain=y(1:mtrain,:);
@@ -62,7 +62,7 @@ size(initial_nn_params);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 nt1=(1+input_layer_size)*hidden_layer_size;
 nt2=nt1+(hidden_layer_size+1)*hidden_layer_size;
-options = optimset('MaxIter', 500);
+options = optimset('MaxIter', 700);
 lambda = 1;
 costFunction = @(p) nnCostFunction(p, ...
                                    input_layer_size, ...
@@ -111,7 +111,15 @@ ymat=zeros(3,size(y,1));
 for i=1:size(y,1)
 ymat(y(i,1),i)=1;
 end
-plotconfusion(ymat,hm);
+
+[p,hm2]=predict(Theta1,Theta2,Xcv);
+ymat2=zeros(3,size(ycv,1));
+for i=1:size(ycv,1)
+ymat2(ycv(i,1),i)=1;
+end
+
+plotconfusion(ymat,hm');
+plotconfusion(ymat2,hm2');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                   Guardar Matrices                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -127,4 +135,4 @@ fprintf(fid, [repmat('%g\t', 1, size(Theta3,2)-1) '%g\n'], Theta3.');
 fclose(fid);
 end
 
-save('RedNeuronalSptos3','Theta1','Theta2','ms');
+save('RedNeuronalSPUnion3','Theta1','Theta2','ms');

@@ -1,0 +1,22 @@
+ptas=encontrarPaths;
+
+load RedNeuronalSPLocal3
+c1={Theta1;Theta2;ms};
+load RedNeuronalSPVisitante3
+c2={Theta1;Theta2;ms};
+load RedNeuronalSPDirecto3
+c3={Theta1;Theta2;ms};
+load RedNeuronalSPUnion3
+c4={Theta1;Theta2;ms};
+
+
+[a,b,x]=xlsread([ptas{1},'SP31_35.xlsx']);
+
+res=cell2mat(x(:,end));
+
+for i=1:size(x,1)
+     nombrelocal=eliminarEspacios(x{i,3});
+    nombrevis=eliminarEspacios(x{i,4});
+    
+    
+end

@@ -1,0 +1,10 @@
+AthBilbao	Mallorca	0.393464	0.185759	0.427022			
+AthMadrid	Barcelona	0.297189	0.372198	0.266981			
+Betis	Celta	0.391313	0.0647359	0.547561			
+Levante	Zaragoza	0.354944	0.243652	0.331082			
+Malaga	Sevilla	0.649278	0.0888132	0.26049			
+Osasuna	Getafe	0.410702	0.0851324	0.452391			
+Vallecano	Valencia	0.771805	0.0912639	0.14271			
+Espanol	RealMadrid	0.766845	0.096221	0.132162			
+Sociedad	Granada	0.964962	0.0244456	0.0223781			
+Valladolid	LaCoruna	0.737794	0.181222	0.0781406			

@@ -1,6 +1,6 @@
-function [E,ag]=generarDatos(path,datoscomp,datosequipo, jornada)
+function [Ejloc,Ejdir,Ejvis,ag]=generarDatos(path,datoscomp,datosequipo, jornada)
 
-ventana=3;
+ventana=5;
 
 
 teams=textread([path,'AllTeams.txt'],'%s');
@@ -18,7 +18,7 @@ ftr=datosequipo{r,6};
 gh=datosequipo(r,4);
 ga=datosequipo(r,5);
 
-z=zeros(1,8);
+z=zeros(1,9);
 ag=1;
 
 if ha==1 %Local
@@ -86,9 +86,9 @@ if ddir==z
     ag=0;
 end
 
-%[ddirL]=encontrarPartido(datoshome,'equipolocal',5,jornada,nomAway);
+[ddirL]=encontrarPartido(datoshome,'equipolocal',ventana,jornada,nomAway);
 
-%[ddirV]=encontrarPartido(datosaway,'equipovisitante',5,jornada,nomLocal);
+[ddirV]=encontrarPartido(datosaway,'equipovisitante',ventana,jornada,nomLocal);
 
     part=part-1;
 if part==0
@@ -100,13 +100,22 @@ puntosh=100*(ptslocal)/(part);
 puntosa=100*(ptsvis)/(part);
 end
 
-posrelativa=abs(poslocal-posvis)/20;
+posrelativa=(poslocal-posvis)/20;
 
-dunion=dgeneral*3+dgeneralrival*3+ddir*2+dlocallocal*1+dvisvis*1;
 
-E=[dgeneral,dgeneralrival,dlocallocal,dvisvis,ddir,dunion...
+E=[dgeneral,dgeneralrival,dlocallocal,dvisvis,ddir,ddirL,ddirV...
     puntosh,puntosa,poslocal,posvis,posrelativa,ftr];%Cambiado el ultimo termino de resultado -> goles
                                                                     %Agregado cell2mat
             
-
+Ejloc=[dgeneral,dlocallocal,ddirL,poslocal,ftr];
+Ejdir=[ddir,ddirL,ddirV,posrelativa,ftr];
+switch ftr
+    case 1
+        resvis=3;
+    case 2
+        resvis=2;
+    case 3
+        resvis=1;
+end
+ Ejvis=[dgeneralrival,dvisvis,ddirV,posvis,resvis];                                                                   
 end

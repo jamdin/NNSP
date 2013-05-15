@@ -9,9 +9,9 @@ switch liga
             Equipos=textread([ptas{1} '\' 'AllTeams.txt'],'%s');
             prefijo='SP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='datosEsp0506_1213_puntos2.mat';
+            dir='datosEsp0506_1213_puntos.mat';
             dirxls='pruebaEsp3.xlsx';
-            tp=33;
+            tp=35;
             ppt=38;
 
         case 'Inglaterra'
@@ -20,9 +20,9 @@ switch liga
             Equipos=textread([ptas{2} '\' 'AllTeams.txt'],'%s');
             prefijo='EP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='datosIng0506_1213_puntos2.mat';
+            dir='datosIng0506_1213_puntos.mat';
             dirxls='pruebaIng3.xlsx';
-            tp=35;
+            tp=36;
             ppt=38;
             
         case 'Alemania'
@@ -31,9 +31,9 @@ switch liga
             Equipos=textread([ptas{3} '\' 'AllTeams.txt'],'%s');
             prefijo='DP';
             temp='0607%0708%0809%0910%1011%1112%1213';
-            dir='datosAle0506_1213_puntos2.mat';
+            dir='datosAle0506_1213_puntos.mat';
             dirxls='pruebaAle3.xlsx';
-            tp=31;
+            tp=32;
             ppt=34;
             
         case 'Italia'
@@ -42,9 +42,9 @@ switch liga
             Equipos=textread([ptas{4} '\' 'AllTeams.txt'],'%s');
             prefijo='IP';
             temp='0506%0607%0708%0809%0910%1011%1112%1213';
-            dir='datosIta0506_1213_puntos2.mat';
+            dir='datosIta0506_1213_puntos.mat';
             dirxls='pruebaIta3.xlsx';
-            tp=34;
+            tp=35;
             ppt=38;
             
         case 'Francia'
@@ -53,15 +53,15 @@ switch liga
             Equipos=textread([ptas{5} '\' 'AllTeams.txt'],'%s');
             prefijo='FP';
             temp='0708%0809%0910%1011%1112%1213';
-            dir='datosFra0506_1213_puntos2.mat';
+            dir='datosFra0506_1213_puntos.mat';
             dirxls='pruebaFra3.xlsx';
-            tp=34;
+            tp=35;
             ppt=38;
 
 end
     
 r=regexp(temp,'%','split');
-datos=cell(380,23,size(Equipos,1));
+datos=cell(380,22,size(Equipos,1));
 for i=1:size(Equipos,1) %for de todos los equipos
     
     equipo=Equipos(i)
@@ -83,7 +83,7 @@ for i=1:size(Equipos,1) %for de todos los equipos
         %buscar partidos de la temporada    
             Ceq=infoTemporada(equipo,x,r(j));
             %Guardar partidos en el archivo
-            datos(aux:(aux+size(Ceq,1)-1),1:22,i)=Ceq;
+            datos(aux:(aux+size(Ceq,1)-1),1:21,i)=Ceq;
             aux=aux+size(Ceq,1);
         %aumentar j
             j=j+1;
@@ -102,17 +102,17 @@ for i=1:size(temporadas,2) %for de todas las temporadas empezando por la 0708
          totalPartidos=tp; 
       end
      p=zeros(size(temporadas,1),totalPartidos);
-     part=strcat(char(tempo),num2str(1));      
+     part=strcat(char(tempo),num2str(1))      
 
      for j=1:size(temporadas,1)%For de los equipos
          nombreEquipo=temporadas(j,i);
          equipo=strcmp(Equipos(:,1),nombreEquipo);
          datosequipo=datos(:,:,equipo);
 
-       fila=find(strcmp(datosequipo(:,1),char(tempo)));
+       fila=find(strcmp(datosequipo(:,1),part));
 
-fila=fila(1);
-       puntosjor=datosequipo(fila:(fila+totalPartidos-1),22)';
+    fila=fila(1);
+       puntosjor=datosequipo(fila:(fila+totalPartidos-1),21)';
        if size(puntosjor,2)~=size(cell2mat(puntosjor),1)
            puntosjor(end)=puntosjor(end-1);
        end
@@ -133,10 +133,10 @@ fila=fila(1);
          equipo=strcmp(Equipos(:,1),nombreEquipo);
          datosequipo=datos(:,:,equipo);
 
-fila=find(strcmp(datosequipo(:,1),char(tempo)));
+fila=find(strcmp(datosequipo(:,1),part));
 fila=fila(1);
 pos=a(j,:)';
-           dat2(fila:(fila+totalPartidos-1),:,equipo)=[datosequipo(fila:(fila+totalPartidos-1),1:22),num2cell(pos)];
+           dat2(fila:(fila+totalPartidos-1),:,equipo)=[datosequipo(fila:(fila+totalPartidos-1),1:21),num2cell(pos)];
            
        end
        
@@ -146,9 +146,9 @@ datos=dat2;
 
 save(dir,'datos','temporadas');
 a=1;
-cpf={'Temporada','Jornada', 'Rival', 'H/A', 'HG', 'AG', 'FTR', 'HS', 'AS', 'HST', 'AST', 'HF', 'AG', 'HC', 'AC', 'HY', 'AY', 'HR', 'AR', 'HTHG', 'HTAG', 'Puntos', 'Posicion'};
-for i=1:size(Equipos,1)
-xlswrite(dirxls,[cpf;datos(:,:,i)],char(Equipos(i,1)));
-end
+% cpf={'Temporada','Jornada', 'Rival', 'H/A', 'HG', 'AG', 'FTR', 'HS', 'AShots', 'HST', 'AST', 'HF', 'AG', 'HC', 'AC', 'HY', 'AY', 'HR', 'AR', 'HTHG', 'HTAG', 'Puntos', 'Posicion'};
+% for i=1:size(Equipos,1)
+% xlswrite(dirxls,[cpf;datos(:,:,i)],char(Equipos(i,1)));
+% end
 
 end

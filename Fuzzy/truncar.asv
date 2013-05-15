@@ -1,0 +1,12 @@
+function num=truncar(numero,max,min)
+    mas=find(numero>max);
+    nmas=numero(
+    if numero>max
+        num=max;
+    elseif numero<min
+            num=min;
+    else
+        num=numero;
+    end
+
+end
