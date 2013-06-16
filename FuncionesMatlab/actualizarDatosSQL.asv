@@ -40,6 +40,7 @@ s=char(s);
 [n,tmp,partidos]=xlsread(s);
 
 puntos=zeros(1,size(Equipos,1));
+jj=[];
 %For de los equipos
     for i=1:size(Equipos,1)
        equipo=char(Equipos(i))
@@ -66,4 +67,6 @@ puntos=zeros(1,size(Equipos,1));
          insertarPosicionSQL(datab,equipo,posicion,temporada);
     
     end
+    
+    dat=1;
 end

@@ -40,6 +40,7 @@ s=char(s);
 [n,tmp,partidos]=xlsread(s);
 
 puntos=zeros(1,size(Equipos,1));
+jj=zeros(size(Equipos,1),38);
 %For de los equipos
     for i=1:size(Equipos,1)
        equipo=char(Equipos(i))
@@ -48,6 +49,7 @@ puntos=zeros(1,size(Equipos,1));
        
        if size(filasxls,1)>numfilasdb
           for fil=(numfilasdb+1):size(filasxls,1) 
+              jj(i,fil)=1;
               C=infoTemporadaSQL(equipo,partidos,temporada,fil,filasxls(fil),ptosant);
               C(:,23)=num2cell(0);
               insertarSQL(datab,equipo,C);
@@ -58,12 +60,15 @@ puntos=zeros(1,size(Equipos,1));
           
     end
 
-    [a,ind]=sort(puntos,2,'descend');
-    [a,ind2]=sort(ind,2);
-    for i=1:size(Equipos,1)
-         equipo=char(Equipos(i))
-         posicion=num2str(ind2(i));
-         insertarPosicionSQL(datab,equipo,posicion,temporada);
-    
-    end
+%     [a,ind]=sort(puntos,2,'descend');
+%     [a,ind2]=sort(ind,2);
+%     for i=1:size(Equipos,1)
+%          equipo=char(Equipos(i))
+%          posicion=num2str(ind2(i));
+%          jeq=jj(i,:);
+%          insertarPosicionSQL(datab,equipo,posicion,temporada,jeq);
+%     
+%     end
+%     
+    dat=1;
 end

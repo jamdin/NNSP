@@ -10,7 +10,7 @@ function i=insertarSQL(datab,equipo,C)
         C(1,i)={num2str(cell2mat(C(1,i)))};
     end
 %    insert(conn,tabla,colname,C);
-    query=['INSERT INTO ' equipo '$ VALUES ('];
+   query=['INSERT INTO ' equipo '$ VALUES ('];
     for i=1:(size(C,2)-1)
        query=[query, '''', char(C(1,i)), ''','];        
     end
